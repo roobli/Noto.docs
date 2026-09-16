@@ -10,5 +10,8 @@
   },
   "devDependencies": {
     "vitepress": "^1.6.4"
+  },
+  "dependencies": {
+    "@roobli/md": "github:roobli/md#v0.1.8"
   }
 }

@@ -57,6 +57,7 @@ export default defineConfig({
             { text: 'Plugins', link: '/guide/plugins' },
             { text: 'Theming', link: '/guide/theming' },
             { text: 'Remote control', link: '/guide/remote-control' },
+            { text: 'Engine preview', link: '/guide/engine-preview' },
           ],
         },
       ],
