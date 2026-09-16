@@ -1,4 +1,6 @@
 allowBuilds:
   esbuild: true
+  '@roobli/md': true
 onlyBuiltDependencies:
   - esbuild
+  - '@roobli/md'
