@@ -10,8 +10,20 @@ export default defineConfig({
   ignoreDeadLinks: true,
 
   head: [
-    ['link', { rel: 'icon', href: '/Noto.docs/favicon.svg' }],
-    ['meta', { name: 'theme-color', content: '#fafaf9' }],
+    ['link', { rel: 'icon', href: '/Noto.docs/favicon.svg', type: 'image/svg+xml' }],
+    ['meta', { name: 'theme-color', content: '#fafaf8' }],
+    ['link', { rel: 'preconnect', href: 'https://fonts.googleapis.com' }],
+    [
+      'link',
+      { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
+    ],
+    [
+      'link',
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap',
+      },
+    ],
   ],
 
   themeConfig: {
