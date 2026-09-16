@@ -38,6 +38,8 @@ pnpm docs:preview
 
 ## Deploy
 
-GitHub Actions builds on every push to `main` and deploys with
-`actions/deploy-pages`. Pages is configured for **GitHub Actions** (not the
-legacy `/docs` folder on `main`).
+GitHub Actions builds on every push to `main` and publishes the VitePress
+`dist` to the `gh-pages` branch (`peaceiris/actions-gh-pages`).
+
+Pages settings: **Deploy from a branch** → `gh-pages` / `/` (not the old
+`main` `/docs` folder).
