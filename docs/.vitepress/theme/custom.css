@@ -1,0 +1,116 @@
+:root {
+  --vp-c-bg: #fafaf9;
+  --vp-c-bg-alt: #f5f5f4;
+  --vp-c-bg-elv: #ffffff;
+  --vp-c-bg-soft: #f5f5f4;
+
+  --vp-c-border: #e7e5e4;
+  --vp-c-divider: #e7e5e4;
+  --vp-c-gutter: #e7e5e4;
+
+  --vp-c-text-1: #1c1917;
+  --vp-c-text-2: #57534e;
+  --vp-c-text-3: #78716c;
+
+  --vp-c-brand-1: #0f766e;
+  --vp-c-brand-2: #0d9488;
+  --vp-c-brand-3: #14b8a6;
+  --vp-c-brand-soft: rgba(15, 118, 110, 0.12);
+
+  --vp-button-brand-bg: #0f766e;
+  --vp-button-brand-hover-bg: #0d9488;
+  --vp-button-brand-active-bg: #115e59;
+  --vp-button-brand-text: #fafaf9;
+
+  --vp-home-hero-name-color: #1c1917;
+  --vp-home-hero-name-background: transparent;
+
+  --vp-font-family-base: ui-sans-serif, system-ui, -apple-system, 'Segoe UI',
+    Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.dark {
+  --vp-c-bg: #1c1917;
+  --vp-c-bg-alt: #292524;
+  --vp-c-bg-elv: #292524;
+  --vp-c-bg-soft: #292524;
+
+  --vp-c-border: #44403c;
+  --vp-c-divider: #44403c;
+  --vp-c-gutter: #44403c;
+
+  --vp-c-text-1: #f5f5f4;
+  --vp-c-text-2: #d6d3d1;
+  --vp-c-text-3: #a8a29e;
+
+  --vp-c-brand-1: #2dd4bf;
+  --vp-c-brand-2: #5eead4;
+  --vp-c-brand-3: #14b8a6;
+  --vp-c-brand-soft: rgba(45, 212, 191, 0.14);
+
+  --vp-button-brand-bg: #0f766e;
+  --vp-button-brand-hover-bg: #0d9488;
+  --vp-button-brand-active-bg: #115e59;
+
+  --vp-home-hero-name-color: #f5f5f4;
+}
+
+/* Quieter chrome: less flashy hero glow */
+.VPHomeHero .image-bg {
+  display: none;
+}
+
+.VPHomeHero .name {
+  letter-spacing: -0.03em;
+  font-weight: 650;
+}
+
+.VPHomeHero .tagline {
+  max-width: 36rem;
+  color: var(--vp-c-text-2);
+}
+
+.VPFeature {
+  border-radius: 10px;
+}
+
+.screenshot-frame {
+  margin: 1.5rem 0 0;
+  border: 1px solid var(--vp-c-border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--vp-c-bg-alt);
+}
+
+.screenshot-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.download-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.download-table th,
+.download-table td {
+  border: 1px solid var(--vp-c-border);
+  padding: 0.55rem 0.75rem;
+  text-align: left;
+}
+
+.download-table th {
+  background: var(--vp-c-bg-soft);
+  font-weight: 600;
+}
+
+.note-quiet {
+  color: var(--vp-c-text-2);
+  font-size: 0.95rem;
+}
+
+.VPFooter a {
+  color: var(--vp-c-brand-1);
+}
