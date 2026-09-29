@@ -59,11 +59,20 @@ may follow in the next release.
 5. **Numbers that are current.** Gate. Re-measure open, keystroke and save on
    packaged builds with `@roobli/md` as the default, against the same Typora
    and corpus, and replace the README table. Keep the old table in the
-   measurement record with its date. In progress: a
-   [benchmark workflow](https://github.com/roobli/Noto/blob/main/.github/workflows/bench.yml)
-   now measures Noto on a packaged build for every tag, and its first runs led
-   to [a faster save](https://github.com/roobli/Noto/pull/294) on long notes.
-   The comparison with Typora needs a Mac that has Typora installed.
+   measurement record with its date.
+   - Noto's half is done: a
+     [benchmark workflow](https://github.com/roobli/Noto/blob/main/.github/workflows/bench.yml)
+     measures a packaged build on every tag, and the README shows its numbers
+     for `main` on 29 September 2026
+     ([roobli/Noto#296](https://github.com/roobli/Noto/pull/296)).
+   - Getting there found two problems in long notes, both fixed: a save that
+     grew with the square of the number of blocks
+     ([roobli/Noto#294](https://github.com/roobli/Noto/pull/294)), and a spell
+     checker that froze the window for over a minute each time typing paused
+     in the 8 MB test document
+     ([roobli/Noto#295](https://github.com/roobli/Noto/pull/295)).
+   - Still open: the comparison with Typora, repeated with the current engine
+     on a Mac that has Typora installed.
 6. **An honest front door.** Done: download links and version
    facts on this site are generated from the Releases API at build time;
    screenshots are retaken on the current chrome against a synthetic vault, in
@@ -90,9 +99,10 @@ may follow in the next release.
    are met ([D12](./decisions#decided)): two releases on Stable with no
    fidelity problem that needed it. Two parsers are two sets of bugs,
    two golden baselines and a second question on every review.
-4. **Open time.** The last packaged measurement had Typora 2.6 times faster on
-   a 525 KB file. Close that gap with the new engine, or explain it with new
-   numbers.
+4. **Open time.** The last side-by-side measurement, with the previous
+   parser, had Typora 2.6 times faster on a 525 KB file. Close that gap with
+   the new engine, or explain it with new numbers measured on one machine. At 8
+   MB a keystroke still takes about five frames, which belongs here too.
 5. **Settings audit** ([rule 6](./principles#_6-a-setting-is-a-decision-not-yet-made)).
 6. **The writing loop**, in the order a writer meets it: paste, undo, input
    method composition, spell check, find, export. Each checked against
