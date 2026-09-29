@@ -62,9 +62,8 @@ may follow in the next release.
    measurement record with its date. In progress: a
    [benchmark workflow](https://github.com/roobli/Noto/blob/main/.github/workflows/bench.yml)
    now measures Noto on a packaged build for every tag, and its first runs led
-   to [a save several times faster](https://github.com/roobli/Noto/pull/294)
-   on long notes. The comparison with Typora needs a Mac that has Typora
-   installed.
+   to [a faster save](https://github.com/roobli/Noto/pull/294) on long notes.
+   The comparison with Typora needs a Mac that has Typora installed.
 6. **An honest front door.** Done: download links and version
    facts on this site are generated from the Releases API at build time;
    screenshots are retaken on the current chrome against a synthetic vault, in
