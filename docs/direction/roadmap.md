@@ -59,7 +59,12 @@ may follow in the next release.
 5. **Numbers that are current.** Gate. Re-measure open, keystroke and save on
    packaged builds with `@roobli/md` as the default, against the same Typora
    and corpus, and replace the README table. Keep the old table in the
-   measurement record with its date.
+   measurement record with its date. In progress: a
+   [benchmark workflow](https://github.com/roobli/Noto/blob/main/.github/workflows/bench.yml)
+   now measures Noto on a packaged build for every tag, and its first runs led
+   to [a save several times faster](https://github.com/roobli/Noto/pull/294)
+   on long notes. The comparison with Typora needs a Mac that has Typora
+   installed.
 6. **An honest front door.** Done: download links and version
    facts on this site are generated from the Releases API at build time;
    screenshots are retaken on the current chrome against a synthetic vault, in
@@ -120,8 +125,9 @@ and starts being made of it, so every page is evidence for the claim it makes.
 
 Measured on `v0.0.2-alpha.113`:
 
-- The Markdown pipeline (`src/shared/markdown/v3`) touches Node in one place:
-  a `createHash` call for a sha256 in `document.ts`.
+- The Markdown pipeline (`src/shared/markdown/v3`) touched Node in one place:
+  a `createHash` call for a sha256 in `document.ts`. That is gone since
+  [roobli/Noto#293](https://github.com/roobli/Noto/pull/293).
 - The editor (`src/renderer/editor/noto`, about 11,500 lines) never calls the
   desktop bridge. It imports ProseMirror, Prism, KaTeX and shared code, and two
   small renderer helpers.
@@ -153,8 +159,14 @@ So the work is a boundary, not a rewrite.
 
 Groundwork, which also helps the desktop app:
 
-1. **Hashing that runs anywhere.** Replace `node:crypto` in the shared layer
-   with a synchronous sha256 that runs in any JavaScript runtime.
+1. **Hashing that runs anywhere.** Done in
+   [roobli/Noto#293](https://github.com/roobli/Noto/pull/293): the shared layer
+   hashes with a synchronous sha256 in plain JavaScript, and the desktop
+   installs Node's native one, which gives the same digests three to four times
+   faster. Measuring it found a save path that was quadratic in the number of
+   blocks, fixed in
+   [roobli/Noto#294](https://github.com/roobli/Noto/pull/294): the groundwork
+   paid for itself on the desktop first.
 2. **A named host boundary.** What `App` hands the editor today becomes a
    `NotoHost` interface: read bytes, save bytes against a base hash, resolve an
    asset, resolve a wiki link, open a link. The desktop implements it with the
