@@ -1,10 +1,10 @@
 ---
 layout: home
 title: Noto
-titleTemplate: Markdown, edited as rendered
+titleTemplate: Edit the page. Keep the file.
 hero:
   name: Noto
-  text: Markdown, edited as rendered
+  text: Edit the page. Keep the file.
   tagline: A Markdown editor that edits the rendered document and keeps the file byte for byte. No preview pane. You type into headings, tables, task lists, math and fenced code directly.
   actions:
     - theme: brand

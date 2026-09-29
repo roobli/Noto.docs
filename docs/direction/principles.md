@@ -5,8 +5,9 @@ description: The rules a change to Noto is judged by, and where Noto stands agai
 
 # Principles
 
-::: info Proposal, under discussion
-See the [decision log](./decisions) for what has been agreed.
+::: info Adopted 2026-09-29
+The owner adopted these principles on 2026-09-29. The "Today" notes are as of
+`v0.0.2-alpha.113`.
 :::
 
 Eight rules. A change that breaks one needs its reason written down. A change
@@ -123,7 +124,7 @@ runs the macOS version it targets.
 not been audited. The Mac release is Apple silicon only, so an Intel Mac
 cannot run Noto at all: Rosetta translates Intel code for Apple silicon, not
 the other way round. The README and this site now say so; whether to ship an
-Intel build is [D8](./decisions#open).
+Intel build is settled by [D8](./decisions#decided): a universal build once the release workflow can produce one.
 
 ## 8. Say only what is true
 

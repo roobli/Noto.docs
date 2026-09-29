@@ -85,7 +85,7 @@ export default defineConfig({
     ],
 
     footer: {
-      message: 'Noto is AGPL-3.0-only.',
+      message: 'Noto is AGPL-3.0-only. This site: CC BY 4.0 for prose, MIT for code.',
       copyright:
         'Public product site for <a href="https://github.com/roobli/Noto">roobli/Noto</a>.',
     },

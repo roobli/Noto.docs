@@ -5,11 +5,11 @@ description: What Noto is for, who it serves, and how the projects around it rel
 
 # Direction
 
-::: info Proposal, partly decided
-Drafted 2026-09-29 from a review of every public roobli repository. Nothing on
-these pages is decided until it appears under **Decided** in the
-[decision log](./decisions); D1 to D3 are. Facts are as of Noto
-`v0.0.2-alpha.113` and `@roobli/md` `v0.1.19`.
+::: info Adopted 2026-09-29
+Drafted from a review of every public roobli repository and adopted by the
+owner on 2026-09-29; the [decision log](./decisions) records each decision and
+what is still open. Facts are as of Noto `v0.0.2-alpha.113` and `@roobli/md`
+`v0.1.19`.
 :::
 
 This section is where the project writes down what it is trying to be, so that

@@ -5,11 +5,10 @@ description: Three horizons for Noto, the gate between each, how releases work, 
 
 # Roadmap
 
-::: info Partly decided
-The gate for leaving alpha and the first version number are decided
-([D2, D3](./decisions#decided)): the first release outside alpha is `0.1.0`.
-Everything else here is a proposal until the [decision log](./decisions)
-records it.
+::: info Adopted 2026-09-29
+The owner adopted this roadmap on 2026-09-29; each decision behind it is in
+the [decision log](./decisions#decided). The first release outside alpha is
+`0.1.0`.
 :::
 
 Three horizons, each ending in a gate rather than a date. Work moves to the
@@ -47,10 +46,11 @@ may follow in the next release.
    - Retire the first-open instructions only after a notarized build passes
      that check.
 3. **Signed on Windows.** SmartScreen is the same first-minute problem on the
-   other platform. Choose a signing route ([D7](./decisions#open)).
+   other platform. The route is chosen after pricing ([D15](./decisions#open)).
 4. **Every Mac, or a clear statement.** Gate. The README and this site now
    say plainly that Intel Macs are unsupported by current releases; whether to
-   ship an Intel or universal build is [D8](./decisions#open).
+   ship a universal build is settled by [D8](./decisions#decided): as soon as
+   the release workflow can produce one.
 5. **Numbers that are current.** Gate. Re-measure open, keystroke and save on
    packaged builds with `@roobli/md` as the default, against the same Typora
    and corpus, and replace the README table. Keep the old table in the
@@ -74,8 +74,9 @@ may follow in the next release.
 2. **Accessibility.** VoiceOver and Narrator through open, edit, save, quick
    open and Settings; keyboard reach for every control; contrast checked in
    both themes.
-3. **One engine.** Agree the criteria for retiring the micromark escape hatch
-   ([D12](./decisions#open)), then remove it. Two parsers are two sets of bugs,
+3. **One engine.** Retire the micromark escape hatch once the agreed criteria
+   are met ([D12](./decisions#decided)): two releases on Stable with no
+   fidelity problem that needed it. Two parsers are two sets of bugs,
    two golden baselines and a second question on every review.
 4. **Open time.** The last packaged measurement had Typora 2.6 times faster on
    a 525 KB file. Close that gap with the new engine, or explain it with new
@@ -103,7 +104,7 @@ may follow in the next release.
 
 ## Noto on the web {#web}
 
-Proposed by the owner and recorded as [D13](./decisions#open): run Noto's core
+Proposed by the owner and adopted as [D13](./decisions#decided): run Noto's core
 in the browser, and build this site with it. The site stops describing Noto
 and starts being made of it, so every page is evidence for the claim it makes.
 
@@ -158,7 +159,7 @@ Groundwork, which also helps the desktop app:
 
 | Phase | What ships | When |
 | --- | --- | --- |
-| **W0** | The engine preview on the engine Noto ships, and a check on every pull request and deploy that each page of this site comes back byte for byte from `@roobli/md`. The site's own pages become part of the engine's evidence. | Done, pending merge |
+| **W0** | The engine preview on the engine Noto ships, and a check on every pull request and deploy that each page of this site comes back byte for byte from `@roobli/md`. The site's own pages become part of the engine's evidence. | Done |
 | **W1** | Pages drawn by Noto. This site's Markdown is rendered by the Noto core, with the app's schema, typography and node views, inside VitePress's shell, which stays for navigation and search. Server-render what the schema can for first paint; mount the read-only editor for exact visuals. | After `0.1.0` |
 | **W2** | Edit this page, keep the file. Every page gets *Edit in Noto*: the page becomes editable in the browser, and saving assembles the file exactly as the desktop does and opens a pull request. The diff is the edit and nothing else. This is the pitch, demonstrated on every page. | After W1 |
 | **W3** | Noto for the web: a local folder through the File System Access API, or a public repository read-only. A second product surface, which needs its own case. | Decided after W2 has been used |

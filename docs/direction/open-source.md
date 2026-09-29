@@ -5,9 +5,9 @@ description: The standard for documents, templates and contribution across roobl
 
 # Open source
 
-::: info Proposal, under discussion
-The audit below is as of 2026-09-29. The order of work at the end is a
-proposal; see the [decision log](./decisions).
+::: info Adopted 2026-09-29
+The standard was adopted on 2026-09-29. The audit and the order of work below
+say where each repository stands.
 :::
 
 Every roobli repository is public, so every document in them is part of the
@@ -39,11 +39,11 @@ that has none of its own, so most of this is written once.
 | --- | --- | --- | --- | --- | --- |
 | Noto | Yes | AGPL-3.0-only | No; release bodies only | Unit, then packaged end-to-end on three platforms | Download table and performance note corrected in [#289](https://github.com/roobli/Noto/pull/289); a changelog is still missing. |
 | @roobli/md | A phase log | MIT | No; history lives in the README's status section | Yes | README should read as a library landing page; the phase history belongs in a changelog. |
-| Noto.docs | Yes | None | No | A pull request check: every page round-trips byte for byte, and the site builds | Release facts now generated at build time and the engine preview on `v0.1.19`; several guides still duplicate pages in the Noto repository. |
-| @roobli/canvas | Good | MIT | No | Yes | Needs an explicit experimental label. |
-| holt | Chinese only | MIT | No | None | The organization profile says its license is still settling while the repository says MIT. |
+| Noto.docs | Yes | CC BY 4.0 for prose, MIT for code | No | A pull request check: every page round-trips byte for byte, and the site builds | Release facts now generated at build time and the engine preview on `v0.1.19`; several guides still duplicate pages in the Noto repository. |
+| @roobli/canvas | Good, labelled experimental | MIT | No | Yes | Frozen until Noto hosts canvas documents (D6). |
+| holt | English summary, then Chinese | MIT | No | None | Labelled a personal companion (D6); needs a CI workflow. |
 | noto-plugin-template | Good | MIT | No | None | A template should typecheck against the API it targets. |
-| .github | — | — | — | — | Contributing and security name only Noto and canvas; no code of conduct, issue forms or pull request template. |
+| .github | — | — | — | — | Contributing, security, issue forms and a pull request template now cover every repository; the code of conduct waits on a contact (D16). |
 
 ## How documentation is organized
 
@@ -77,18 +77,18 @@ The rules that keep them accurate:
 6. **English first, Chinese second.** English is the working language of
    every public repository. User guides get a Chinese translation once the
    English is stable, because many of the people Noto is for write in
-   Chinese ([D9](./decisions#open)).
+   Chinese ([D9](./decisions#decided)).
 
 ## Order of work
 
-1. Organization defaults in `.github`: code of conduct, issue forms, pull
-   request template, a support page, and contributing and security guides that
-   cover every repository.
+1. Organization defaults in `.github`: done, except the code of conduct,
+   which waits on a reporting contact (D16).
 2. Noto: a changelog; the README's download and performance sections made
    true.
 3. `@roobli/md`: the README rewritten as a library landing page; a changelog
    built from the phase history.
-4. This site: generated version facts and the current engine (done, pending
-   merge); a license; guides deduplicated with the Noto repository.
-5. canvas, holt and the plugin template: status labels; holt's README in
-   English, or an explicit decision to keep it Chinese.
+4. This site: generated version facts, the current engine and a license are
+   done; the guides are still to be deduplicated with the Noto repository.
+5. canvas and holt are labelled (D6), and holt's README opens in English
+   (D9). The plugin template still needs a typecheck against the API it
+   targets.
