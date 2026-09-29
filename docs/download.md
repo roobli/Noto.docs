@@ -28,12 +28,14 @@ xattr -cr Noto.app && open Noto.app
 | Platform | Download |
 | --- | --- |
 | macOS, Apple silicon | a `.zip` holding `Noto.app` |
+| macOS, Intel | a `.zip` holding `Noto.app`, in releases after `v0.0.2-alpha.113` |
 | Windows, x64 | `NotoSetup-<version>.exe` |
 | Debian and Ubuntu, x64 | a `.deb` package |
 | Fedora and openSUSE, x64 | an `.rpm` package |
 
-Intel Macs are not supported by current releases. The macOS build is for Apple
-silicon, and Rosetta runs Intel apps on Apple silicon, not the other way round.
+Take the zip for your Mac's chip; Apple menu → About This Mac says which.
+An Apple silicon Mac can also run the Intel build, under Rosetta; an Intel Mac
+cannot run the Apple silicon one.
 
 ## Staying current
 

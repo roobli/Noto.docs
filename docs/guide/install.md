@@ -12,9 +12,10 @@ smooth.
 
 ## macOS
 
-1. Download `Noto-<version>-macos-arm64.zip`. Current releases are for Apple
-   silicon only: an Intel Mac cannot run them, since Rosetta runs Intel apps on
-   Apple silicon and not the other way round.
+1. Download `Noto-<version>-macos-arm64.zip` for Apple silicon, or
+   `Noto-<version>-macos-x64.zip` for an Intel Mac. The Intel zip is in
+   releases after `v0.0.2-alpha.113`; before that, an Intel Mac has no build
+   it can run.
 2. Unzip. You should get `Noto.app` (move it to `/Applications` if you like).
 3. **First open** — pick one:
 

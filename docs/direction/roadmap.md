@@ -21,8 +21,10 @@ next horizon when the gate is met, not when the calendar says so.
 `v0.0.2-alpha.112`) and the items marked **gate** below. The unmarked items
 may follow in the next release.
 
-1. **Stable means stable.** Gate. In review:
-   [roobli/Noto#289](https://github.com/roobli/Noto/pull/289).
+1. **Stable means stable.** Gate. Done in
+   [roobli/Noto#289](https://github.com/roobli/Noto/pull/289): the release
+   flags were corrected on GitHub the day it merged, and the updater's own
+   check ships with the next build.
    - Correct the prerelease flag on every `v*-alpha.*` release on GitHub.
    - Make the updater refuse any version with a semver prerelease component on
      the Stable channel, whatever GitHub says. This covers both the in-app
@@ -30,7 +32,10 @@ may follow in the next release.
      release" and is misled the same way.
    - Create the GitHub release in the release workflow, with the prerelease
      flag derived from the tag, so a hand-made release cannot drift again.
-2. **Signed and notarized on macOS.** Gate.
+2. **Signed and notarized on macOS.** Gate. The release workflow signs,
+   notarizes and verifies as soon as the credentials exist
+   ([roobli/Noto#291](https://github.com/roobli/Noto/pull/291), with the list
+   in `RELEASING.md`); what remains is the account and the certificate.
    - Apple Developer Program membership and a Developer ID Application
      certificate, held by the organization rather than a personal account if
      possible.
@@ -46,23 +51,26 @@ may follow in the next release.
    - Retire the first-open instructions only after a notarized build passes
      that check.
 3. **Signed on Windows.** SmartScreen is the same first-minute problem on the
-   other platform. The route is chosen after pricing ([D15](./decisions#open)).
-4. **Every Mac, or a clear statement.** Gate. The README and this site now
-   say plainly that Intel Macs are unsupported by current releases; whether to
-   ship a universal build is settled by [D8](./decisions#decided): as soon as
-   the release workflow can produce one.
+   other platform. Signing through the SignPath Foundation's open-source
+   programme ([D15](./decisions#decided)); the application comes first.
+4. **Every Mac.** Gate, met in the release workflow
+   ([D8](./decisions#decided)): each release builds an Intel zip beside the
+   Apple silicon one, and the update feed lists both.
 5. **Numbers that are current.** Gate. Re-measure open, keystroke and save on
    packaged builds with `@roobli/md` as the default, against the same Typora
    and corpus, and replace the README table. Keep the old table in the
    measurement record with its date.
-6. **An honest front door.** Done, pending merge: download links and version
+6. **An honest front door.** Done: download links and version
    facts on this site are generated from the Releases API at build time;
    screenshots are retaken on the current chrome against a synthetic vault, in
    English and Chinese; the README's download table matches what releases
    carry. A macOS retake of the screenshots is still wanted before `0.1.0`.
-7. **Release notes for people.** A `CHANGELOG.md` in
-   [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) form, written for
-   the person updating; engine detail links to `@roobli/md`'s own changelog.
+7. **Release notes for people.** Done in
+   [roobli/Noto#291](https://github.com/roobli/Noto/pull/291): a
+   `CHANGELOG.md` in [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
+   form, written for the person updating, with engine detail linked to
+   `@roobli/md`'s own changelog, and a `RELEASING.md` that turns
+   [D4](./decisions#decided) into steps.
 
 ## Next: make it Noto's own {#next}
 

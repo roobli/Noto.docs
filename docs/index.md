@@ -43,7 +43,7 @@ features:
 
 <DownloadTiles />
 
-<p class="note-quiet">Until Apple notarization and a Windows code-signing certificate ship, each OS warns once on a fresh download. That is expected — not a broken build. See <a href="./guide/install">Install</a>. Intel Macs are not supported by current releases.</p>
+<p class="note-quiet">Until Apple notarization and a Windows code-signing certificate ship, each OS warns once on a fresh download. That is expected — not a broken build. See <a href="./guide/install">Install</a>.</p>
 
 macOS one-liner after unzip (from the folder that contains `Noto.app`):
 

@@ -79,6 +79,7 @@ function compare(a: Parsed, b: Parsed): number {
 
 const PLATFORMS: readonly { test: RegExp; platform: string; meta: string }[] = [
   { test: /-macos-arm64\.zip$/, platform: 'macOS', meta: 'Apple silicon · .zip' },
+  { test: /-macos-x64\.zip$/, platform: 'macOS', meta: 'Intel · .zip' },
   { test: /^NotoSetup-.*\.exe$/, platform: 'Windows', meta: 'x64 · installer' },
   { test: /\.deb$/, platform: 'Linux', meta: 'Debian / Ubuntu · .deb' },
   { test: /\.rpm$/, platform: 'Linux', meta: 'Fedora / openSUSE · .rpm' },
