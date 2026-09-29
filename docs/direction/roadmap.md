@@ -47,10 +47,9 @@ may follow in the next release.
      that check.
 3. **Signed on Windows.** SmartScreen is the same first-minute problem on the
    other platform. The route is chosen after pricing ([D15](./decisions#open)).
-4. **Every Mac, or a clear statement.** Gate. The README and this site now
-   say plainly that Intel Macs are unsupported by current releases; whether to
-   ship a universal build is settled by [D8](./decisions#decided): as soon as
-   the release workflow can produce one.
+4. **Every Mac.** Gate, met in the release workflow
+   ([D8](./decisions#decided)): each release builds an Intel zip beside the
+   Apple silicon one, and the update feed lists both.
 5. **Numbers that are current.** Gate. Re-measure open, keystroke and save on
    packaged builds with `@roobli/md` as the default, against the same Typora
    and corpus, and replace the README table. Keep the old table in the

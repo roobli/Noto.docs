@@ -1,5 +1,12 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { data } from '../releases.data'
+
+// Said only while the newest build has no Intel zip, so the page never
+// contradicts the release it links.
+const noIntel = computed(
+  () => !!data.newest && !data.newest.downloads.some((download) => download.meta.startsWith('Intel')),
+)
 </script>
 
 <template>
@@ -26,6 +33,11 @@ import { data } from '../releases.data'
           <span class="download-tile__file">{{ download.file }}</span>
         </a>
       </div>
+      <p v-if="noIntel" class="note-quiet">
+        This build has no Intel Mac download; Rosetta runs Intel apps on Apple
+        silicon, not the other way round. Releases after
+        <code>v0.0.2-alpha.113</code> carry one.
+      </p>
     </template>
     <p v-else class="download-intro">
       Builds for macOS, Windows and Linux are on the

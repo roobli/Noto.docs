@@ -121,10 +121,10 @@ Keyboard-only use reaches every control. The Mac build runs on every Mac that
 runs the macOS version it targets.
 
 **Today.** Title-bar avoidance and menus are done with care. Accessibility has
-not been audited. The Mac release is Apple silicon only, so an Intel Mac
-cannot run Noto at all: Rosetta translates Intel code for Apple silicon, not
-the other way round. The README and this site now say so; whether to ship an
-Intel build is settled by [D8](./decisions#decided): a universal build once the release workflow can produce one.
+not been audited. Releases up to `v0.0.2-alpha.113` are Apple silicon only,
+so an Intel Mac could not run them: Rosetta translates Intel code for Apple
+silicon, not the other way round. The README and this site now say so; whether to ship an
+Intel build is settled by [D8](./decisions#decided): later releases carry one.
 
 ## 8. Say only what is true
 
