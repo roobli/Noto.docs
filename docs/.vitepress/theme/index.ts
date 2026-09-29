@@ -2,6 +2,7 @@ import DefaultTheme from 'vitepress/theme'
 import type { Theme } from 'vitepress'
 import ScreenshotToggle from './components/ScreenshotToggle.vue'
 import RoobliMdView from './components/RoobliMdView.vue'
+import DownloadTiles from './components/DownloadTiles.vue'
 import './custom.css'
 
 const Theme: Theme = {
@@ -9,6 +10,7 @@ const Theme: Theme = {
   enhanceApp({ app }) {
     app.component('ScreenshotToggle', ScreenshotToggle)
     app.component('RoobliMdView', RoobliMdView)
+    app.component('DownloadTiles', DownloadTiles)
   },
 }
 

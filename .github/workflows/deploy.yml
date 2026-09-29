@@ -3,6 +3,10 @@ name: Deploy VitePress site to Pages
 on:
   push:
     branches: [main]
+  # Download links and version facts are read from GitHub Releases at build
+  # time, so the site is rebuilt on a schedule to follow new releases.
+  schedule:
+    - cron: '23 */6 * * *'
   workflow_dispatch:
 
 permissions:
@@ -31,7 +35,12 @@ jobs:
       - name: Install
         run: pnpm install --frozen-lockfile
 
+      - name: Every page round-trips byte for byte
+        run: pnpm check:roundtrip
+
       - name: Build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: pnpm docs:build
 
       - name: Deploy to gh-pages

@@ -38,12 +38,17 @@ export default defineConfig({
         activeMatch: '/guide/',
       },
       {
+        text: 'Direction',
+        link: '/direction/',
+        activeMatch: '/direction/',
+      },
+      {
         text: 'GitHub',
         link: 'https://github.com/roobli/Noto',
       },
       {
         text: 'Download',
-        link: 'https://github.com/roobli/Noto/releases/tag/v0.0.2-alpha.30',
+        link: '/download',
       },
     ],
 
@@ -61,6 +66,18 @@ export default defineConfig({
           ],
         },
       ],
+      '/direction/': [
+        {
+          text: 'Direction',
+          items: [
+            { text: 'Overview', link: '/direction/' },
+            { text: 'Principles', link: '/direction/principles' },
+            { text: 'Roadmap', link: '/direction/roadmap' },
+            { text: 'Open source', link: '/direction/open-source' },
+            { text: 'Decisions', link: '/direction/decisions' },
+          ],
+        },
+      ],
     },
 
     socialLinks: [
@@ -68,7 +85,7 @@ export default defineConfig({
     ],
 
     footer: {
-      message: 'Noto is AGPL-3.0-only.',
+      message: 'Noto is AGPL-3.0-only. This site: CC BY 4.0 for prose, MIT for code.',
       copyright:
         'Public product site for <a href="https://github.com/roobli/Noto">roobli/Noto</a>.',
     },
