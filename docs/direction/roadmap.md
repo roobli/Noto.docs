@@ -5,10 +5,11 @@ description: Three horizons for Noto, the gate between each, how releases work, 
 
 # Roadmap
 
-::: info Proposal, under discussion
-Every item here is a proposal until the [decision log](./decisions) records
-it. The two gates already agreed for leaving alpha are `@roobli/md` on by
-default (done in `v0.0.2-alpha.112`) and macOS notarization (not done).
+::: info Partly decided
+The gate for leaving alpha and the first version number are decided
+([D2, D3](./decisions#decided)): the first release outside alpha is `0.1.0`.
+Everything else here is a proposal until the [decision log](./decisions)
+records it.
 :::
 
 Three horizons, each ending in a gate rather than a date. Work moves to the
@@ -16,11 +17,13 @@ next horizon when the gate is met, not when the calendar says so.
 
 ## Now: make it trustworthy {#now}
 
-**Gate:** the first non-alpha release. It ships when the items below are done,
-and not before. Which of them are hard requirements is decision
-[D2](./decisions#open).
+**Gate:** `0.1.0`, the first release outside alpha. Per
+[D2](./decisions#decided) it requires `@roobli/md` on by default (done in
+`v0.0.2-alpha.112`) and the items marked **gate** below. The unmarked items
+may follow in the next release.
 
-1. **Stable means stable.**
+1. **Stable means stable.** Gate. In review:
+   [roobli/Noto#289](https://github.com/roobli/Noto/pull/289).
    - Correct the prerelease flag on every `v*-alpha.*` release on GitHub.
    - Make the updater refuse any version with a semver prerelease component on
      the Stable channel, whatever GitHub says. This covers both the in-app
@@ -28,7 +31,7 @@ and not before. Which of them are hard requirements is decision
      release" and is misled the same way.
    - Create the GitHub release in the release workflow, with the prerelease
      flag derived from the tag, so a hand-made release cannot drift again.
-2. **Signed and notarized on macOS.**
+2. **Signed and notarized on macOS.** Gate.
    - Apple Developer Program membership and a Developer ID Application
      certificate, held by the organization rather than a personal account if
      possible.
@@ -45,17 +48,18 @@ and not before. Which of them are hard requirements is decision
      that check.
 3. **Signed on Windows.** SmartScreen is the same first-minute problem on the
    other platform. Choose a signing route ([D7](./decisions#open)).
-4. **Every Mac, or a clear statement.** Ship an Intel or universal build, or
-   say plainly that Intel Macs are unsupported ([D8](./decisions#open)).
-   Silence is the one wrong answer.
-5. **Numbers that are current.** Re-measure open, keystroke and save on
+4. **Every Mac, or a clear statement.** Gate. The README and this site now
+   say plainly that Intel Macs are unsupported by current releases; whether to
+   ship an Intel or universal build is [D8](./decisions#open).
+5. **Numbers that are current.** Gate. Re-measure open, keystroke and save on
    packaged builds with `@roobli/md` as the default, against the same Typora
    and corpus, and replace the README table. Keep the old table in the
    measurement record with its date.
-6. **An honest front door.** Download links and version facts on this site
-   generated from the Releases API at build time. Screenshots retaken on the
-   current chrome, with the differentiators on screen, in English and Chinese.
-   The README's download table matched to what releases actually carry.
+6. **An honest front door.** Done, pending merge: download links and version
+   facts on this site are generated from the Releases API at build time;
+   screenshots are retaken on the current chrome against a synthetic vault, in
+   English and Chinese; the README's download table matches what releases
+   carry. A macOS retake of the screenshots is still wanted before `0.1.0`.
 7. **Release notes for people.** A `CHANGELOG.md` in
    [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) form, written for
    the person updating; engine detail links to `@roobli/md`'s own changelog.
@@ -93,10 +97,75 @@ and not before. Which of them are hard requirements is decision
    a product.
 2. **`@roobli/md` on npm** with a v1 contract, so other hosts can share
    Noto's fidelity guarantee.
-3. **A read-only web reader** on the same engine this site already runs, for
-   sharing a note or browsing a folder. Not editing in the browser.
+3. **Noto on the web**, in the [track below](#web).
 4. **Canvas documents**, only if Noto decides to host them and only through
    the sandbox. Until then `@roobli/canvas` waits.
+
+## Noto on the web {#web}
+
+Proposed by the owner and recorded as [D13](./decisions#open): run Noto's core
+in the browser, and build this site with it. The site stops describing Noto
+and starts being made of it, so every page is evidence for the claim it makes.
+
+### Why it is within reach
+
+Measured on `v0.0.2-alpha.113`:
+
+- The Markdown pipeline (`src/shared/markdown/v3`) touches Node in one place:
+  a `createHash` call for a sha256 in `document.ts`.
+- The editor (`src/renderer/editor/noto`, about 11,500 lines) never calls the
+  desktop bridge. It imports ProseMirror, Prism, KaTeX and shared code, and two
+  small renderer helpers.
+- `@roobli/md` already runs in the browser on this site.
+- What is desktop-only is the file layer in the main process: reading, block
+  records, the save that refuses on conflict, recovery, the workspace and
+  plugins.
+
+So the work is a boundary, not a rewrite.
+
+### One core, two hosts
+
+```
+          @roobli/md (MIT)
+          parse · split · reparse · serialize
+                 │
+          Noto core (AGPL)
+          schema · engine IR → ProseMirror · editor
+          document styles · byte-exact save assembly
+                 │
+      ┌──────────┴────────────┐
+  Desktop host             Web host
+  Electron main: files,    fetch: read-only pages
+  block records,           File System Access:
+  recovery, workspace,     a local folder
+  plugins                  GitHub: an edit becomes
+                           a pull request
+```
+
+Groundwork, which also helps the desktop app:
+
+1. **Hashing that runs anywhere.** Replace `node:crypto` in the shared layer
+   with a synchronous sha256 that runs in any JavaScript runtime.
+2. **A named host boundary.** What `App` hands the editor today becomes a
+   `NotoHost` interface: read bytes, save bytes against a base hash, resolve an
+   asset, resolve a wiki link, open a link. The desktop implements it with the
+   preload APIs it already has.
+3. **A web build of the core** from the Noto repository, a library entry
+   consumed here by tag the way `@roobli/md` is. No monorepo migration until a
+   second consumer needs one.
+
+### Phases
+
+| Phase | What ships | When |
+| --- | --- | --- |
+| **W0** | The engine preview on the engine Noto ships, and a check on every pull request and deploy that each page of this site comes back byte for byte from `@roobli/md`. The site's own pages become part of the engine's evidence. | Done, pending merge |
+| **W1** | Pages drawn by Noto. This site's Markdown is rendered by the Noto core, with the app's schema, typography and node views, inside VitePress's shell, which stays for navigation and search. Server-render what the schema can for first paint; mount the read-only editor for exact visuals. | After `0.1.0` |
+| **W2** | Edit this page, keep the file. Every page gets *Edit in Noto*: the page becomes editable in the browser, and saving assembles the file exactly as the desktop does and opens a pull request. The diff is the edit and nothing else. This is the pitch, demonstrated on every page. | After W1 |
+| **W3** | Noto for the web: a local folder through the File System Access API, or a public repository read-only. A second product surface, which needs its own case. | Decided after W2 has been used |
+
+The groundwork may run while the gate waits on certificates. Nothing in this
+track ships ahead of `0.1.0`, and none of it is a cloud: no accounts, no sync,
+no hosted notes.
 
 ## Not on the roadmap {#no}
 
@@ -128,5 +197,5 @@ For context: 113 alphas were tagged between 5 and 28 September 2026, 23 of
 them in the last three days. At that rate the version number carries no
 information, and anyone on Testing is asked to update several times a day. A
 build is not a release. The table keeps the engineering pace and gives the
-version number its meaning back. The first non-alpha version number is
-decision [D3](./decisions#open).
+version number its meaning back. The first release outside alpha will be
+`0.1.0` ([D3](./decisions#decided)).

@@ -42,7 +42,8 @@ promises. A save that could lose data is refused, never guessed.
 not exist yet. And Stable is broken: dozens of alpha releases are flagged on
 GitHub as full releases, and the updater trusts that flag alone, so Stable
 currently resolves to `v0.0.2-alpha.109`. Both are first in
-[Now](./roadmap#now).
+[Now](./roadmap#now); the channel fix is in review in
+[roobli/Noto#289](https://github.com/roobli/Noto/pull/289).
 
 ## 3. Defaults are the product
 
@@ -121,7 +122,8 @@ runs the macOS version it targets.
 **Today.** Title-bar avoidance and menus are done with care. Accessibility has
 not been audited. The Mac release is Apple silicon only, so an Intel Mac
 cannot run Noto at all: Rosetta translates Intel code for Apple silicon, not
-the other way round.
+the other way round. The README and this site now say so; whether to ship an
+Intel build is [D8](./decisions#open).
 
 ## 8. Say only what is true
 
@@ -133,11 +135,13 @@ or labelled as intent, and carries its date.
 **Test.** No page on this site, no README and no release note states a fact
 that is out of date.
 
-**Today.** The voice holds; the facts drift. This site links `v0.0.2-alpha.30`
-as the download while the current alpha is `.113`. The README's download table
-lists Windows and Linux archives and an Intel Mac build that current releases
-do not carry. The home screenshot shows title-bar icons that the chrome record
-says were removed.
+**Today.** The voice holds; the facts drifted. This site linked
+`v0.0.2-alpha.30` as the download while the current alpha was `.113`; the
+README's download table listed archives and an Intel Mac build that releases do
+not carry; the home screenshot showed title-bar icons the chrome had dropped.
+The fix is structural where it can be: this site now generates its release
+facts from GitHub at build time, and the README and screenshots are corrected
+in [roobli/Noto#289](https://github.com/roobli/Noto/pull/289).
 
 ## A pass over the interface
 
@@ -152,10 +156,11 @@ soon a new person would meet them.
    words: Noto edits the rendered page and never rewrites what you did not
    touch. The status line's *Exact source preserved* already proves it at
    work; the empty state is where it should be introduced.
-3. **The hero image should show the difference.** The current screenshot is
-   headings and paragraphs about the author's own vault. It shows nothing a
-   plain preview could not. Show a table edited as a table, a formula, a fence
-   with its gutter, and the fidelity line. Once in English, once in Chinese.
+3. **The hero image should show the difference.** The old screenshot was
+   headings and paragraphs about the author's own vault, showing nothing a
+   plain preview could not. The new ones, on a synthetic vault, show a callout,
+   a table, a formula, a fence with its gutter, a task list and the fidelity
+   line, in English and in Chinese. A macOS retake is still wanted.
 4. **Typography should follow the script** (rule 3).
 5. **Saving automatically deserves a second look.** On macOS, documents save
    themselves; that is the platform's promise. Noto's reasons for leaving it

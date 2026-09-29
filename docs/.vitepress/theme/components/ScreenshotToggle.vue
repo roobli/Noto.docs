@@ -2,22 +2,25 @@
 import { ref, computed } from 'vue'
 import { withBase } from 'vitepress'
 
-const mode = ref<'light' | 'dark'>('light')
+type Mode = 'light' | 'dark'
+type Lang = 'en' | 'zh'
+
+const mode = ref<Mode>('light')
+const lang = ref<Lang>('en')
 
 const src = computed(() =>
-  withBase(mode.value === 'light' ? '/images/noto-light.png' : '/images/noto-dark.png'),
+  withBase(`/images/noto-${mode.value}${lang.value === 'zh' ? '-zh' : ''}.png`),
 )
 
-const caption = computed(() =>
-  mode.value === 'light'
-    ? 'Editing a document with the file rail open — light theme'
-    : 'The same window — dark theme',
-)
+const caption = computed(() => {
+  const note = lang.value === 'zh' ? 'A Chinese note' : 'A note'
+  const theme = mode.value === 'light' ? 'light theme' : 'dark theme'
+  return `${note} with a callout, a table, inline math, a fenced block and a task list — ${theme}`
+})
 
-const alt = computed(() =>
-  mode.value === 'light'
-    ? 'Noto editing a document, with the file rail open (light theme)'
-    : 'Noto in the dark theme',
+const alt = computed(
+  () =>
+    `Noto editing ${lang.value === 'zh' ? 'a Chinese' : 'an English'} note with the file rail open, ${mode.value} theme`,
 )
 </script>
 
@@ -25,28 +28,33 @@ const alt = computed(() =>
   <div class="shot-showcase">
     <div class="shot-tabs" role="tablist" aria-label="Screenshot theme">
       <button
+        v-for="option in (['light', 'dark'] as const)"
+        :key="option"
         type="button"
         role="tab"
         class="shot-tab"
-        :aria-selected="mode === 'light'"
-        :class="{ active: mode === 'light' }"
-        @click="mode = 'light'"
+        :aria-selected="mode === option"
+        :class="{ active: mode === option }"
+        @click="mode = option"
       >
-        Light
+        {{ option === 'light' ? 'Light' : 'Dark' }}
       </button>
+      <span class="shot-tabs__gap" aria-hidden="true" />
       <button
+        v-for="option in (['en', 'zh'] as const)"
+        :key="option"
         type="button"
         role="tab"
         class="shot-tab"
-        :aria-selected="mode === 'dark'"
-        :class="{ active: mode === 'dark' }"
-        @click="mode = 'dark'"
+        :aria-selected="lang === option"
+        :class="{ active: lang === option }"
+        @click="lang = option"
       >
-        Dark
+        {{ option === 'en' ? 'English' : '中文' }}
       </button>
     </div>
     <figure class="shot-frame">
-      <img :src="src" :alt="alt" width="1440" height="900" loading="lazy" />
+      <img :src="src" :alt="alt" width="2560" height="1600" loading="lazy" />
       <figcaption>{{ caption }}</figcaption>
     </figure>
   </div>

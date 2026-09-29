@@ -37,9 +37,9 @@ that has none of its own, so most of this is written once.
 
 | Repository | README | LICENSE | CHANGELOG | CI | What needs attention |
 | --- | --- | --- | --- | --- | --- |
-| Noto | Yes | AGPL-3.0-only | No; release bodies only | Unit, then packaged end-to-end on three platforms | Download table lists archives and an Intel build releases do not carry; performance table predates the engine switch. |
+| Noto | Yes | AGPL-3.0-only | No; release bodies only | Unit, then packaged end-to-end on three platforms | Download table and performance note corrected in [#289](https://github.com/roobli/Noto/pull/289); a changelog is still missing. |
 | @roobli/md | A phase log | MIT | No; history lives in the README's status section | Yes | README should read as a library landing page; the phase history belongs in a changelog. |
-| Noto.docs | Yes | None | No | Deploy only | Download links point at `v0.0.2-alpha.30`; the engine preview pins `@roobli/md` `v0.1.8` against a current `v0.1.19`; several guides duplicate pages in the Noto repository. |
+| Noto.docs | Yes | None | No | A pull request check: every page round-trips byte for byte, and the site builds | Release facts now generated at build time and the engine preview on `v0.1.19`; several guides still duplicate pages in the Noto repository. |
 | @roobli/canvas | Good | MIT | No | Yes | Needs an explicit experimental label. |
 | holt | Chinese only | MIT | No | None | The organization profile says its license is still settling while the repository says MIT. |
 | noto-plugin-template | Good | MIT | No | None | A template should typecheck against the API it targets. |
@@ -88,7 +88,7 @@ The rules that keep them accurate:
    true.
 3. `@roobli/md`: the README rewritten as a library landing page; a changelog
    built from the phase history.
-4. This site: a license, generated version facts, the engine preview moved to
-   the current engine, guides deduplicated with the Noto repository.
+4. This site: generated version facts and the current engine (done, pending
+   merge); a license; guides deduplicated with the Noto repository.
 5. canvas, holt and the plugin template: status labels; holt's README in
    English, or an explicit decision to keep it Chinese.

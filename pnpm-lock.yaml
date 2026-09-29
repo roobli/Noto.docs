@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@roobli/md':
-        specifier: github:roobli/md#v0.1.8
-        version: https://codeload.github.com/roobli/md/tar.gz/30c9264da78b712db2d20dfae40692b36d40c3d6(@types/mdast@4.0.4)(micromark-util-types@2.0.2)(micromark@4.0.2)
+        specifier: github:roobli/md#v0.1.19
+        version: https://codeload.github.com/roobli/md/tar.gz/625768657eff93558858731aae8c68f78613bb98(@types/mdast@4.0.4)(micromark-util-types@2.0.2)(micromark@4.0.2)
     devDependencies:
       vitepress:
         specifier: ^1.6.4
@@ -426,10 +426,11 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@roobli/md@https://codeload.github.com/roobli/md/tar.gz/30c9264da78b712db2d20dfae40692b36d40c3d6':
-    resolution: {gitHosted: true, tarball: https://codeload.github.com/roobli/md/tar.gz/30c9264da78b712db2d20dfae40692b36d40c3d6}
-    version: 0.1.8
+  '@roobli/md@https://codeload.github.com/roobli/md/tar.gz/625768657eff93558858731aae8c68f78613bb98':
+    resolution: {gitHosted: true, tarball: https://codeload.github.com/roobli/md/tar.gz/625768657eff93558858731aae8c68f78613bb98}
+    version: 0.1.19
     engines: {node: '>=22.12.0'}
+    hasBin: true
 
   '@shikijs/core@2.5.0':
     resolution: {integrity: sha512-uu/8RExTKtavlpH7XqnVYBrfBkUc20ngXiX9NSrBhOVZYv/7XQRKUyhtkeflY5QsxC0GbJThCerruZfsUaSldg==}
@@ -1341,7 +1342,7 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.63.3':
     optional: true
 
-  '@roobli/md@https://codeload.github.com/roobli/md/tar.gz/30c9264da78b712db2d20dfae40692b36d40c3d6(@types/mdast@4.0.4)(micromark-util-types@2.0.2)(micromark@4.0.2)':
+  '@roobli/md@https://codeload.github.com/roobli/md/tar.gz/625768657eff93558858731aae8c68f78613bb98(@types/mdast@4.0.4)(micromark-util-types@2.0.2)(micromark@4.0.2)':
     dependencies:
       mdast-util-frontmatter: 2.0.1
       mdast-util-gfm: 3.1.0

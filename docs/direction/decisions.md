@@ -14,44 +14,15 @@ answer it does. Recommendations are the reviewer's; they are not decisions.
 | Date | Decision | Where |
 | --- | --- | --- |
 | 2026-09-27 | `@roobli/md` is Noto's default Markdown engine. `NOTO_MARKDOWN_ENGINE=micromark` remains as an escape hatch. | [Noto#282](https://github.com/roobli/Noto/pull/282), shipped in `v0.0.2-alpha.112` |
-| 2026-09 | Leaving alpha requires two gates: `@roobli/md` on by default, and macOS notarization. Release readiness is signed off by the maintainer who owns it, not declared by whoever cuts the tag. | Maintainers |
+| 2026-09 | Leaving alpha requires two gates: `@roobli/md` on by default, and macOS notarization. Release readiness is signed off by the maintainer who owns it, not declared by whoever cuts the tag. Extended by D2. | Maintainers |
 | 2026-09 | Nested emphasis is capped at thirty-seven levels on purpose. No release exists only to raise the cap. | Maintainers; `MAX_MARK_NEST` in `src/shared/markdown/v3/pm/from-engine.ts` |
 | 2026-09 | Public work lives in the roobli organization. No private note content is ever published; fixtures are synthetic. | Maintainers |
+| 2026-09-29 | Remove private-vault material from every public tree: design records, test data, local paths, screenshots. | Owner; [Noto#289](https://github.com/roobli/Noto/pull/289), [md#21](https://github.com/roobli/md/pull/21), [holt#3](https://github.com/roobli/holt/pull/3), [canvas#1](https://github.com/roobli/canvas/pull/1) |
+| 2026-09-29 | **D1.** Repair the Stable channel now. A version with a prerelease component is a prerelease whatever GitHub says; the release workflow creates and corrects releases from the tag; existing releases are re-flagged. | Owner; [Noto#289](https://github.com/roobli/Noto/pull/289) |
+| 2026-09-29 | **D2.** The first non-alpha release requires `@roobli/md` on by default, macOS notarization, a repaired Stable channel, performance numbers measured on the current engine, and a stated Intel Mac position. Windows signing and the rest of [Now](./roadmap#now) may follow in the next release. | Owner |
+| 2026-09-29 | **D3.** The first non-alpha version is `0.1.0`. | Owner |
 
 ## Open {#open}
-
-### D1. Repair the Stable channel now
-
-Dozens of alpha releases are flagged as full releases on GitHub, so Stable
-resolves to `v0.0.2-alpha.109`. Fixing it means editing those releases on
-GitHub and changing the updater and release workflow
-([Now, item 1](./roadmap#now)).
-
-**Recommendation.** Yes, before anything else. It is the one item on this list
-that is actively doing harm.
-
-### D2. What gates the first non-alpha release
-
-- **(a)** The two gates already agreed: engine default-on and macOS
-  notarization.
-- **(b)** Everything in [Now](./roadmap#now).
-- **(c)** (a), plus a repaired Stable channel, current performance numbers,
-  and a stated Intel Mac position.
-
-**Recommendation.** (c). A formal release on a Stable channel that serves
-alphas would not mean what it says, and an Intel user deserves to know before
-downloading. Windows signing and the rest of Now can follow in the next
-release.
-
-### D3. The first non-alpha version number
-
-- **`0.0.3`**, continuing the current line.
-- **`0.1.0`**, the first minor release of initial development under semver.
-
-**Recommendation.** `0.1.0`. Under semver a `0.0.z` version says that every
-release may break anything; `0.1.0` says "first release meant to be used," which
-is what this is. Either works with the updater, which compares versions with
-semver.
 
 ### D4. Release cadence
 
@@ -131,3 +102,23 @@ default engine throughout.
 
 **Recommendation.** Yes, with the criteria agreed now so that removal is a
 consequence rather than a debate.
+
+### D13. Scope of the web track
+
+Proposed by the owner: Noto's core runs on the web, and this site is built
+with it. The plan is in [Noto on the web](./roadmap#web): W0 and the
+groundwork now, W1 (pages drawn by Noto) and W2 (edit a page, get a pull
+request with exactly that edit) after the 0.1.0 gate, W3 (Noto for the web as
+a product surface) decided only after W2 has been used.
+
+**Recommendation.** Approve W0 through W2 as planned. Keep W3 open.
+
+### D14. License of the web core
+
+The web core is extracted from Noto and is therefore AGPL-3.0-only. That is no
+obstacle for this site, whose source is public. It does deter anyone who would
+embed the editor in their own product. `@roobli/md` is already MIT and is the
+layer meant for other hosts.
+
+**Recommendation.** Keep the editor core AGPL-3.0-only. Revisit only if a
+real embedder appears, since relicensing more permissively cannot be undone.

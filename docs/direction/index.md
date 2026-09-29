@@ -5,11 +5,11 @@ description: What Noto is for, who it serves, and how the projects around it rel
 
 # Direction
 
-::: info Proposal, under discussion
+::: info Proposal, partly decided
 Drafted 2026-09-29 from a review of every public roobli repository. Nothing on
 these pages is decided until it appears under **Decided** in the
-[decision log](./decisions). Facts are as of Noto `v0.0.2-alpha.113` and
-`@roobli/md` `v0.1.19`.
+[decision log](./decisions); D1 to D3 are. Facts are as of Noto
+`v0.0.2-alpha.113` and `@roobli/md` `v0.1.19`.
 :::
 
 This section is where the project writes down what it is trying to be, so that
@@ -103,7 +103,7 @@ or waits its turn.
 | --- | --- | --- | --- | --- |
 | [Noto](https://github.com/roobli/Noto) | The product | AGPL-3.0-only | `0.0.2-alpha` | All roadmap focus. |
 | [@roobli/md](https://github.com/roobli/md) | The platform: Noto's engine | MIT | `0.1.x`, consumed by git tag | A library with a contract: changelog, API reference, semver, npm once the contract settles. |
-| [Noto.docs](https://github.com/roobli/Noto.docs) | The front door | None yet | Live, facts stale | The single source of truth for users. Version facts generated, not typed. |
+| [Noto.docs](https://github.com/roobli/Noto.docs) | The front door, and the first web host of Noto's core | None yet | Live; release facts generated at build time | The single source of truth for users, built with Noto's own engine ([web track](./roadmap#web)). |
 | [noto-plugin-template](https://github.com/roobli/noto-plugin-template) | Future ecosystem | MIT | Scaffold for a door not yet open | Keep, clearly labelled, until user-installed plugins ship. |
 | [@roobli/canvas](https://github.com/roobli/canvas) | Experiment | MIT | v0, no host | Freeze and label experimental until Noto decides to host canvas documents. |
 | [holt](https://github.com/roobli/holt) | Separate companion | MIT | `0.0.1`, unpublished | Outside Noto's story. Decide whether it is a product or a published personal tool. |
@@ -113,5 +113,7 @@ The boundary that matters most is between Noto and `@roobli/md`. The engine
 knows nothing about ProseMirror, windows or vaults, and it should be good
 enough that a host which is not Noto can depend on it; this site already does,
 in the [engine preview](../guide/engine-preview). Keeping that boundary clean is
-what later lets Noto change its editor layer, offer a read-only web reader, or
-let other tools share its fidelity guarantee, without a rewrite.
+what later lets Noto change its editor layer, run in a browser, or let other
+tools share its fidelity guarantee, without a rewrite. The first step is
+already live: every page of this site must come back byte for byte from the
+engine before it can deploy.

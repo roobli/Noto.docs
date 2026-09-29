@@ -14,7 +14,7 @@ It is a [VitePress](https://vitepress.dev/) site with:
 - an **engine preview** at `/guide/engine-preview` that dogfoods
   [`@roobli/md`](https://github.com/roobli/md) in the browser
 
-No private vault or RooB content belongs here. Long-form engineering notes may
+No private vault content belongs here. Long-form engineering notes may
 still live under `roobli/Noto/docs`; this site is the public hub.
 
 ## Dogfood path (`@roobli/md`)

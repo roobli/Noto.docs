@@ -48,7 +48,7 @@ export default defineConfig({
       },
       {
         text: 'Download',
-        link: 'https://github.com/roobli/Noto/releases/tag/v0.0.2-alpha.30',
+        link: '/download',
       },
     ],
 

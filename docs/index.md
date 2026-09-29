@@ -8,8 +8,8 @@ hero:
   tagline: A Markdown editor that edits the rendered document and keeps the file byte for byte. No preview pane. You type into headings, tables, task lists, math and fenced code directly.
   actions:
     - theme: brand
-      text: Download 0.0.2-alpha.30
-      link: https://github.com/roobli/Noto/releases/tag/v0.0.2-alpha.30
+      text: Download
+      link: /download
     - theme: alt
       text: Docs
       link: /guide/install
@@ -41,32 +41,9 @@ features:
 
 ## Download
 
-<p class="download-intro">Current useful builds are on the <strong>0.0.2-alpha</strong> line. Prefer the newest tagged alpha:&nbsp;<a href="https://github.com/roobli/Noto/releases/tag/v0.0.2-alpha.30">Noto 0.0.2-alpha.30</a> · <a href="https://github.com/roobli/Noto/releases">all releases</a>.</p>
+<DownloadTiles />
 
-<div class="download-grid">
-  <a class="download-tile" href="https://github.com/roobli/Noto/releases/download/v0.0.2-alpha.30/Noto-0.0.2-alpha.30-macos-arm64.zip">
-    <span class="download-tile__platform">macOS</span>
-    <span class="download-tile__meta">Apple silicon · .zip</span>
-    <span class="download-tile__file">Noto-…-macos-arm64.zip</span>
-  </a>
-  <a class="download-tile" href="https://github.com/roobli/Noto/releases/download/v0.0.2-alpha.30/NotoSetup-0.0.2-alpha.30.exe">
-    <span class="download-tile__platform">Windows</span>
-    <span class="download-tile__meta">x64 · installer</span>
-    <span class="download-tile__file">NotoSetup-….exe</span>
-  </a>
-  <a class="download-tile" href="https://github.com/roobli/Noto/releases/download/v0.0.2-alpha.30/noto_0.0.2.alpha.30_amd64-0.0.2-alpha.30.deb">
-    <span class="download-tile__platform">Linux</span>
-    <span class="download-tile__meta">Debian / Ubuntu · .deb</span>
-    <span class="download-tile__file">noto_…_amd64.deb</span>
-  </a>
-  <a class="download-tile" href="https://github.com/roobli/Noto/releases/download/v0.0.2-alpha.30/noto-0.0.2.alpha.30-1.x86_64-0.0.2-alpha.30.rpm">
-    <span class="download-tile__platform">Linux</span>
-    <span class="download-tile__meta">Fedora / openSUSE · .rpm</span>
-    <span class="download-tile__file">noto-….rpm</span>
-  </a>
-</div>
-
-<p class="note-quiet">Until Apple notarization and a Windows code-signing certificate ship, each OS warns once on a fresh download. That is expected — not a broken build. See <a href="./guide/install">Install</a>.</p>
+<p class="note-quiet">Until Apple notarization and a Windows code-signing certificate ship, each OS warns once on a fresh download. That is expected — not a broken build. See <a href="./guide/install">Install</a>. Intel Macs are not supported by current releases.</p>
 
 macOS one-liner after unzip (from the folder that contains `Noto.app`):
 
