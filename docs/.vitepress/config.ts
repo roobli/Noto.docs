@@ -38,6 +38,11 @@ export default defineConfig({
         activeMatch: '/guide/',
       },
       {
+        text: 'Direction',
+        link: '/direction/',
+        activeMatch: '/direction/',
+      },
+      {
         text: 'GitHub',
         link: 'https://github.com/roobli/Noto',
       },
@@ -58,6 +63,18 @@ export default defineConfig({
             { text: 'Theming', link: '/guide/theming' },
             { text: 'Remote control', link: '/guide/remote-control' },
             { text: 'Engine preview', link: '/guide/engine-preview' },
+          ],
+        },
+      ],
+      '/direction/': [
+        {
+          text: 'Direction',
+          items: [
+            { text: 'Overview', link: '/direction/' },
+            { text: 'Principles', link: '/direction/principles' },
+            { text: 'Roadmap', link: '/direction/roadmap' },
+            { text: 'Open source', link: '/direction/open-source' },
+            { text: 'Decisions', link: '/direction/decisions' },
           ],
         },
       ],

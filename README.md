@@ -9,6 +9,8 @@ It is a [VitePress](https://vitepress.dev/) site with:
 
 - a product home at `/` (pitch, screenshots, download links)
 - user-facing docs under `/guide/` (install, using, plugins, theming, remote control)
+- the product's direction under `/direction/` (positioning, principles,
+  roadmap, open-source standard, decision log)
 - an **engine preview** at `/guide/engine-preview` that dogfoods
   [`@roobli/md`](https://github.com/roobli/md) in the browser
 
