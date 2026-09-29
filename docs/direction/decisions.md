@@ -24,7 +24,7 @@ answer it does. Recommendations are the reviewer's; they are not decisions.
 | 2026-09-29 | **D4.** Three release tracks: CI builds on every merge as workflow artifacts; alphas at most weekly, each with written notes, on Testing; releases per milestone, on Stable and Testing. | Owner; [how releases work](./roadmap#releases) |
 | 2026-09-29 | **D5.** The headline is **"Edit the page. Keep the file."**, with "A Markdown editor that edits the rendered document and keeps the file byte for byte" beneath it as the explanation. | Owner |
 | 2026-09-29 | **D6.** `@roobli/canvas` is frozen and labelled experimental until Noto decides to host canvas documents. holt stays outside Noto's story and is labelled a personal companion, published as is. `@roobli/md` goes to npm when its contract reaches v1, not before. | Owner |
-| 2026-09-29 | **D7.** The Windows signing route is chosen after checking price and eligibility at the time of purchase, and recorded here with its reasons. | Owner; choice still to make, see D15 |
+| 2026-09-29 | **D7.** The Windows signing route is chosen after checking price and eligibility at the time of purchase, and recorded here with its reasons. | Owner; chosen in D15 |
 | 2026-09-29 | **D8.** Every release builds for Intel Macs as well, and until one does, the pages say so. Refined the same day: a separate Intel zip cross-built on the Apple silicon runner rather than a universal binary, since it is half the download and the updater feed already chooses by architecture. | Owner; [Noto#289](https://github.com/roobli/Noto/pull/289), [Noto#291](https://github.com/roobli/Noto/pull/291) |
 | 2026-09-29 | **D9.** English is the working language of every repository. User guides on this site get Chinese translations once the English is stable. A repository whose README is in another language opens with an English summary. | Owner |
 | 2026-09-29 | **D10.** This site's prose and images are CC BY 4.0; its code is MIT. | Owner; [`LICENSE`](https://github.com/roobli/Noto.docs/blob/main/LICENSE) |
@@ -33,14 +33,9 @@ answer it does. Recommendations are the reviewer's; they are not decisions.
 | 2026-09-29 | **D13.** The web track runs as planned: W0 and the groundwork now, W1 and W2 after `0.1.0`. W3, Noto for the web as a product surface, is decided after W2 has been used. | Owner; [Noto on the web](./roadmap#web) |
 | 2026-09-29 | **D14.** The editor core stays AGPL-3.0-only, including on the web. `@roobli/md` stays MIT as the layer meant for other hosts. Revisit only if a real embedder appears. | Owner |
 | 2026-09-29 | Purge the private material from git history as well as from the current trees, and ask GitHub to drop cached views of the old commits. | Owner |
+| 2026-09-29 | **D15.** Windows builds are signed through the [SignPath Foundation](https://signpath.org/) programme for open-source projects: free, the key held in their HSM, signing driven from the release workflow on GitHub Actions. Azure Artifact Signing was ruled out on eligibility, which is limited to individuals in the US and Canada and to businesses in the US, Canada, the EU and the UK. A certificate on a hardware token remains the fallback. | Owner; the application is the next step |
 
 ## Open {#open}
-
-### D15. Windows signing route
-
-Per D7: price a cloud signing service, an open-source signing programme, and a
-certificate on a hardware token at the time of purchase, then record the choice
-and its reasons here.
 
 ### D16. Code of conduct contact
 

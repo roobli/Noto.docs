@@ -46,7 +46,8 @@ may follow in the next release.
    - Retire the first-open instructions only after a notarized build passes
      that check.
 3. **Signed on Windows.** SmartScreen is the same first-minute problem on the
-   other platform. The route is chosen after pricing ([D15](./decisions#open)).
+   other platform. Signing through the SignPath Foundation's open-source
+   programme ([D15](./decisions#decided)); the application comes first.
 4. **Every Mac.** Gate, met in the release workflow
    ([D8](./decisions#decided)): each release builds an Intel zip beside the
    Apple silicon one, and the update feed lists both.
