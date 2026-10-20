@@ -20,9 +20,12 @@ Mac builds come as a zip; there is no `.dmg` yet.
    releases after `v0.0.2-alpha.113`; before that, an Intel Mac has no build
    it can run.
 2. Unzip. You should get `Noto.app` (move it to `/Applications` if you like).
-3. **First open** — pick one:
-
-   **Right-click → Open** (or Control-click → Open), then confirm **Open**.
+3. **First open.** Double-click `Noto.app` once. macOS says it cannot check
+   Noto for malicious software; click **Done**. Then open
+   **System Settings → Privacy & Security**, scroll down to **Security**, and
+   click **Open Anyway** next to the message about Noto. It is there for about
+   an hour after you tried to open the app. Confirm in the dialog that follows
+   and enter your login password. From then on Noto opens with a double-click.
 
    Or in Terminal, from the folder that contains `Noto.app`:
 
@@ -30,12 +33,16 @@ Mac builds come as a zip; there is no `.dmg` yet.
    xattr -cr Noto.app && open Noto.app
    ```
 
+   On macOS 14 Sonoma and older you can also Right-click (or Control-click)
+   `Noto.app`, choose **Open**, then confirm **Open**. From macOS 15 Sequoia on
+   that shortcut is gone; use **Open Anyway** or the Terminal line.
+
 ### What the dialogs mean
 
 | Dialog | What to do |
 | --- | --- |
-| **"Noto" cannot be opened because Apple cannot check it for malicious software** / **unidentified developer** | Right-click → Open once, or run the `xattr` line above. After that, double-click works. |
-| **"Noto" is damaged and can't be opened** | Re-download the zip from the current release (avoid an old cached copy). Then run `xattr -cr Noto.app` and try Right-click → Open. |
+| **"Noto" Not Opened** / **Apple could not verify "Noto" is free of malware** / **unidentified developer** | Try to open Noto once, then **System Settings → Privacy & Security → Open Anyway** and enter your login password. Or run the `xattr` line above. On macOS 14 and older, Right-click → **Open** also works. After that, double-click works. |
+| **"Noto" is damaged and can't be opened** | Re-download the zip from the current release (avoid an old cached copy). Then run `xattr -cr Noto.app` and open it again. |
 
 True notarization (no Gatekeeper prompt) needs an Apple Developer identity on
 the release machine. Until then, the warning on first open is normal.

@@ -34,30 +34,18 @@ features:
     details: An optional local HTTP API on loopback, token-gated, for scripts and agents on the same machine.
   - icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 18v3"/></svg>'
     title: Mac, Windows, Linux
-    details: Packaged builds for all three. 0.0.3 is the first release outside alpha. It is not yet signed, so Gatekeeper and SmartScreen warn on the first open.
+    details: Packaged builds for all three.
 ---
-
-<ScreenshotToggle />
 
 ## Download
 
 <DownloadTiles />
 
-<p class="note-quiet">Until Apple notarization and a Windows code-signing certificate ship, each OS warns once on a fresh download. That is expected — not a broken build. See <a href="./guide/install">Install</a>.</p>
-
-macOS one-liner after unzip (from the folder that contains `Noto.app`):
-
-```sh
-xattr -cr Noto.app && open Noto.app
-```
-
-Or Right-click → Open the first time.
-
 ## Links
 
 <ul class="links-quiet">
-  <li><a href="./guide/install">Install</a> · <a href="./guide/using">Using Noto</a> · <a href="./guide/plugins">Plugins</a> · <a href="./guide/theming">Theming</a> · <a href="./guide/remote-control">Remote control</a></li>
-  <li><a href="https://github.com/roobli/Noto">Source repository</a></li>
+  <li><a href="./guide/install">Docs</a></li>
+  <li><a href="https://github.com/roobli/Noto">Source</a></li>
   <li><a href="https://github.com/roobli/noto-plugin-template">Plugin template</a></li>
   <li><a href="https://github.com/roobli/Noto/releases">Releases</a></li>
 </ul>

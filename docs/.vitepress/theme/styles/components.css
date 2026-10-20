@@ -1,16 +1,34 @@
 /* —— Site components: screenshot, downloads, engine preview —— */
 
-/* Screenshot: the product is the hero image, framed by a hairline */
-.shot-showcase {
-  margin: 48px 0 0;
+/* Product preview: the switch lives in the frame's top edge, because it
+ * changes only the image inside the frame. */
+.shot-frame {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--cd-line);
+  border-radius: var(--cd-r-panel);
+  background: var(--cd-card);
+  box-shadow: var(--cd-shadow);
 }
 
-.shot-controls {
+.shot-bar {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 8px;
-  margin-bottom: 12px;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--cd-line);
+}
+
+.shot-bar__label {
+  margin-right: 2px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--cd-muted);
+}
+
+.shot-bar__label::after {
+  content: ':';
 }
 
 .shot-seg {
@@ -24,8 +42,8 @@
 
 .shot-seg__btn {
   appearance: none;
-  min-height: 28px;
-  padding: 0 12px;
+  min-height: 26px;
+  padding: 0 11px;
   border: 0;
   border-radius: var(--cd-r-control);
   background: transparent;
@@ -41,27 +59,42 @@
   color: var(--cd-ink);
 }
 
-.shot-seg__btn[aria-pressed='true'] {
+/* Selected segment: explicit choice, or (before any choice) the site theme */
+.shot-seg__btn[aria-pressed='true'],
+.shot-frame[data-mode='auto'] .shot-seg__btn--light:not([aria-pressed]),
+.dark .shot-frame[data-mode='auto'] .shot-seg__btn--dark:not([aria-pressed]) {
   background: var(--cd-card);
   color: var(--cd-ink);
   box-shadow: 0 0 0 1px var(--cd-line), var(--cd-shadow);
 }
 
-.shot-frame {
-  margin: 0;
-  overflow: hidden;
-  border: 1px solid var(--cd-line);
-  border-radius: var(--cd-r-panel);
-  background: var(--cd-card);
-  box-shadow: var(--cd-shadow);
+.dark .shot-frame[data-mode='auto'] .shot-seg__btn--light:not([aria-pressed]) {
+  background: transparent;
+  color: var(--cd-sub);
+  box-shadow: none;
 }
 
-.shot-frame img {
+/* Reserved box with a soft fill, so nothing jumps or shows black while loading */
+.shot-media {
+  aspect-ratio: 2560 / 1600;
+  background: var(--cd-soft);
+}
+
+.shot-img {
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 2560 / 1600;
-  background: var(--cd-soft);
+}
+
+.shot-img--dark,
+.dark .shot-frame[data-mode='auto'] .shot-img--light,
+.shot-frame[data-mode='dark'] .shot-img--light {
+  display: none;
+}
+
+.dark .shot-frame[data-mode='auto'] .shot-img--dark,
+.shot-frame[data-mode='dark'] .shot-img--dark {
+  display: block;
 }
 
 .shot-frame figcaption {
@@ -73,7 +106,7 @@
   color: var(--cd-muted);
 }
 
-/* Downloads: one tile per file; the tile is the link */
+/* Downloads: one ruled row per OS, variants inline */
 .download-intro {
   max-width: 760px;
   margin: 12px 0 16px;
@@ -82,63 +115,108 @@
   color: var(--cd-sub);
 }
 
-.download-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 12px;
+.vp-doc ul.dl-rows,
+.dl-rows {
+  max-width: none !important;
   margin: 16px 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--cd-line);
 }
 
-@media (min-width: 640px) {
-  .download-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+.vp-doc .dl-rows li.dl-row,
+.dl-row {
+  display: grid;
+  grid-template-columns: 9rem minmax(0, 1fr);
+  gap: 6px 20px;
+  margin: 0;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--cd-line);
+}
+
+@media (max-width: 639px) {
+  .vp-doc .dl-rows li.dl-row,
+  .dl-row {
+    grid-template-columns: 1fr;
   }
 }
 
-@media (min-width: 960px) {
-  .VPHome .download-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-.vp-doc a.download-tile,
-a.download-tile {
+.dl-row__os {
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  padding: 14px 16px;
-  border: 1px solid var(--cd-line);
-  border-radius: var(--cd-r-panel);
-  background: var(--cd-card);
-  box-shadow: var(--cd-shadow);
-  color: inherit;
-  font-weight: 400;
-  text-decoration: none;
-  transition: border-color var(--cd-hover) ease;
+  gap: 4px;
+  padding-top: 6px;
 }
 
-.vp-doc a.download-tile:hover,
-a.download-tile:hover {
-  border-color: var(--cd-line-strong);
-}
-
-.download-tile__platform {
-  font-size: 14px;
+.dl-row__name {
+  font-size: 15px;
   font-weight: 600;
+  line-height: 1.3;
   color: var(--cd-ink);
 }
 
-.download-tile__meta {
-  font-size: 12.5px;
+.dl-row__yours {
+  align-self: flex-start;
+  padding: 1px 7px;
+  border-radius: var(--cd-r-pill);
+  background: var(--cd-brand-soft);
+  color: var(--cd-brand);
+  font-size: 11.5px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.dl-row__files {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.vp-doc a.dl-file,
+a.dl-file {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-sizing: border-box;
+  height: 36px;
+  padding: 0 14px;
+  border: 1px solid var(--cd-line-strong);
+  border-radius: var(--cd-r-control);
+  background: var(--cd-card);
+  color: var(--cd-ink);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.vp-doc a.dl-file:hover,
+a.dl-file:hover {
+  border-color: var(--cd-ink);
+  color: var(--cd-ink);
+}
+
+.is-yours a.dl-file {
+  border-color: var(--cd-brand);
+}
+
+.dl-file__kind {
+  font-family: var(--cd-mono);
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--cd-muted);
+}
+
+.vp-doc p.dl-row__note,
+.dl-row__note {
+  margin: 10px 0 0;
+  font-size: 13px;
+  line-height: 1.6;
   color: var(--cd-sub);
 }
 
-.download-tile__file {
-  margin-top: 8px;
-  font-family: var(--cd-mono);
-  font-size: 12px;
-  color: var(--cd-brand);
-  overflow-wrap: anywhere;
+.dl-row__note b {
+  font-weight: 600;
+  color: var(--cd-ink);
 }
 
 /* Engine preview (RoobliMdView): rendered note on a white sheet */

@@ -7,7 +7,7 @@
  * in force; the press transform is removed there as well. */
 
 .VPButton,
-a.download-tile {
+a.dl-file {
   transition-property: color, background-color, border-color, transform;
   transition-duration: var(--cd-hover), var(--cd-hover), var(--cd-hover), var(--cd-press);
   transition-timing-function: ease, ease, ease, var(--cd-ease-out);
@@ -17,7 +17,7 @@ a.download-tile {
   transform: scale(0.97);
 }
 
-a.download-tile:active {
+a.dl-file:active {
   transform: scale(0.98);
 }
 
@@ -31,7 +31,7 @@ a.download-tile:active {
 
 @media (prefers-reduced-motion: reduce) {
   .VPButton:active,
-  a.download-tile:active {
+  a.dl-file:active {
     transform: none;
   }
 }

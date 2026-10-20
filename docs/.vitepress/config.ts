@@ -79,6 +79,15 @@ export default defineConfig({
           columns >= 3 ? ` tabindex="0" role="region" aria-label="${md.utils.escapeHtml(label)}"` : ''
         return `<div class="table-scroll"${focus}>` + self.renderToken(tokens, idx, options) + colgroup
       }
+      // Date cells (2026-09 or 2026-09-29) never wrap and use tabular figures.
+      const cellOpen = (tokens, idx, options, _env, self) => {
+        const inline = tokens[idx + 1]
+        if (inline?.type === 'inline' && /^\d{4}-\d{2}(-\d{2})?$/.test(inline.content.trim())) {
+          tokens[idx].attrJoin('class', 'is-date')
+        }
+        return self.renderToken(tokens, idx, options)
+      }
+      md.renderer.rules.td_open = cellOpen
       md.renderer.rules.table_close = (tokens, idx, options, _env, self) =>
         self.renderToken(tokens, idx, options) + '</div>'
     },
