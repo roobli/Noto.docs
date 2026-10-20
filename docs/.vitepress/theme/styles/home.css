@@ -203,19 +203,20 @@
 
 /* Links: one ruled list, one format */
 .vp-doc ul.links-quiet {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 24px;
   max-width: none !important;
   margin: 12px 0 0;
   padding: 0;
   list-style: none;
   border-top: 1px solid var(--cd-line);
+  border-bottom: 1px solid var(--cd-line);
 }
 
 .vp-doc ul.links-quiet li {
   margin: 0;
   padding: 10px 0;
-  border-bottom: 1px solid var(--cd-line);
   font-size: 14px;
 }
 
