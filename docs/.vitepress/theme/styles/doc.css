@@ -170,6 +170,12 @@
   color: var(--cd-muted);
 }
 
+.vp-doc [class*='language-'] > button.copy:focus-visible {
+  opacity: 1;
+  outline: 2px solid var(--cd-focus);
+  outline-offset: 2px;
+}
+
 .vp-doc [class*='language-'] > button.copy {
   top: 8px;
   right: 8px;
@@ -240,7 +246,7 @@
 .vp-doc td {
   padding: 10px 14px;
   border: 0;
-  border-bottom: 1px solid var(--cd-line);
+  border-bottom: 1px solid var(--cd-rule);
   vertical-align: top;
   text-align: left;
 }
@@ -264,10 +270,15 @@
   color: var(--cd-ink);
 }
 
-/* Short keys in the first column (dates, names) never break mid-token */
+/* Short keys in the first column never break mid-token; dates never wrap */
 .vp-doc td:first-child {
   min-width: 6.75rem;
+}
+
+.vp-doc td.is-date {
+  white-space: nowrap;
   font-variant-numeric: tabular-nums;
+  color: var(--cd-sub);
 }
 
 .vp-doc td code {
@@ -283,7 +294,7 @@
   }
 
   .vp-doc td:first-child {
-    min-width: 6.25rem;
+    min-width: 0;
   }
 }
 
@@ -339,4 +350,22 @@
 
 .vp-doc .custom-block div[class*='language-'] {
   box-shadow: none;
+}
+
+/* Decision log: items under "Open" carry an amber state pill (label + tint,
+ * never color alone). Scoped to the page that has both #decided and #open. */
+.vp-doc:has(#decided) h2#open ~ h3::after {
+  content: 'Open';
+  display: inline-block;
+  margin-left: 10px;
+  padding: 1px 7px;
+  border: 1px solid color-mix(in srgb, var(--cd-amber) 28%, transparent);
+  border-radius: var(--cd-r-pill);
+  background: var(--cd-amber-bg);
+  color: var(--cd-amber-text);
+  font-size: 11.5px;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  vertical-align: 2px;
 }

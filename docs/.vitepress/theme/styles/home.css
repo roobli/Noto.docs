@@ -31,23 +31,9 @@
 }
 
 .VPHero .heading {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+  display: block;
 }
 
-.VPHero .name,
-.VPHero .name.clip {
-  order: 0;
-  max-width: none;
-  font-size: 13px !important;
-  line-height: 1.3 !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.02em;
-  color: var(--cd-brand) !important;
-  background: none !important;
-  -webkit-text-fill-color: currentColor;
-}
 
 .VPHero .text {
   max-width: none !important;
@@ -86,81 +72,110 @@
   padding: 4px !important;
 }
 
-/* Buttons — real links, 36px high, 8px corners */
+/* Buttons — real links, every variant exactly 36px high, 8px corners */
+.VPHero .VPButton.medium,
 .VPButton.medium {
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
   height: 36px;
   padding: 0 16px !important;
+  border: 1px solid transparent;
   border-radius: var(--cd-r-control) !important;
   font-size: 14px !important;
-  line-height: 34px !important;
+  line-height: 1 !important;
   font-weight: 500 !important;
 }
 
+.VPButton.medium.alt {
+  border-color: var(--cd-line-strong);
+}
+
+/* Eyebrow: release facts, not a second wordmark */
+.hero-eyebrow {
+  margin: 0 0 14px;
+  font-size: 13px;
+  line-height: 1.4;
+  font-weight: 500;
+  color: var(--cd-sub);
+  font-variant-numeric: tabular-nums;
+}
+
+.hero-eyebrow > span:first-child {
+  color: var(--cd-brand);
+  font-weight: 600;
+}
+
+.hero-eyebrow__sep {
+  margin: 0 7px;
+  color: var(--cd-muted);
+}
+
+/* The product name stays in the h1 for assistive tech and search */
+.VPHero .name,
+.VPHero .name.clip {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Product preview directly under the hero */
+.home-preview {
+  max-width: calc(var(--cd-wrap) + 2 * var(--cd-gutter));
+  margin: 0 auto;
+  padding: 16px var(--cd-gutter) 0;
+}
+
 /* The facts: a three-column ruled index */
-.VPFeatures {
-  padding: 20px var(--cd-gutter) 0 !important;
+.home-features {
+  max-width: calc(var(--cd-wrap) + 2 * var(--cd-gutter));
+  margin: 0 auto;
+  padding: 48px var(--cd-gutter) 0;
 }
 
-.VPFeatures .container {
-  max-width: var(--cd-wrap) !important;
-}
-
-.VPFeatures .items {
-  margin: 0 !important;
-  display: grid !important;
+.home-features__list {
+  display: grid;
   grid-template-columns: 1fr;
   column-gap: 32px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 @media (min-width: 640px) {
-  .VPFeatures .items {
+  .home-features__list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (min-width: 960px) {
-  .VPFeatures .items {
+  .home-features__list {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
-.VPFeatures .item {
-  width: auto !important;
-  padding: 0 !important;
+.home-feature {
+  padding: 16px 0 22px;
+  border-top: 1px solid var(--cd-line);
 }
 
-.VPFeature {
-  height: 100%;
-  border: 0 !important;
-  border-top: 1px solid var(--cd-line) !important;
-  border-radius: 0 !important;
-  background: transparent !important;
-}
-
-.VPFeature .box {
-  padding: 16px 0 22px !important;
-}
-
-/* The stroke icons repeat the titles; the index reads cleaner without them */
-.VPFeature .icon {
-  display: none !important;
-}
-
-.VPFeature .title {
-  padding: 0 !important;
-  font-size: 14.5px !important;
-  line-height: 1.35 !important;
-  font-weight: 600 !important;
+.home-feature__title {
+  margin: 0;
+  font-size: 14.5px;
+  line-height: 1.35;
+  font-weight: 600;
   letter-spacing: -0.005em;
   color: var(--cd-ink);
 }
 
-.VPFeature .details {
-  padding-top: 6px !important;
-  font-size: 13.5px !important;
-  line-height: 1.6 !important;
-  font-weight: 400 !important;
-  color: var(--cd-sub) !important;
+.home-feature__details {
+  margin: 6px 0 0;
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--cd-sub);
 }
 
 /* Markdown body under the hero */
@@ -186,23 +201,23 @@
   max-width: 760px;
 }
 
-/* Links row and closing line */
+/* Links: one ruled list, one format */
 .vp-doc ul.links-quiet {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 24px;
+  max-width: none !important;
   margin: 12px 0 0;
   padding: 0;
   list-style: none;
+  border-top: 1px solid var(--cd-line);
+  border-bottom: 1px solid var(--cd-line);
 }
 
 .vp-doc ul.links-quiet li {
   margin: 0;
-  padding: 7px 0;
-  border-bottom: 1px solid var(--cd-line);
+  padding: 10px 0;
   font-size: 14px;
-  color: var(--cd-muted);
-}
-
-.vp-doc ul.links-quiet li:first-child {
-  border-top: 1px solid var(--cd-line);
 }
 
 .vp-doc ul.links-quiet li::marker {
@@ -223,4 +238,9 @@
   font-size: 13px !important;
   line-height: 1.6 !important;
   color: var(--cd-muted) !important;
+}
+
+/* Keeps "Noto" and the headline apart when the h1 is read aloud */
+.VPHero .name::after {
+  content: ': ';
 }

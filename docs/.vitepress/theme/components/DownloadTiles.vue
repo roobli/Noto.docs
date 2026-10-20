@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { data } from '../releases.data'
+import DownloadPlatforms from './DownloadPlatforms.vue'
 
 // Said only while the newest build has no Intel zip, so the page never
 // contradicts the release it links.
@@ -22,18 +23,7 @@ const noIntel = computed(
         </span>
         <a :href="data.releasesUrl">All releases</a>.
       </p>
-      <div v-if="data.newest.downloads.length" class="download-grid">
-        <a
-          v-for="download in data.newest.downloads"
-          :key="download.file"
-          class="download-tile"
-          :href="download.url"
-        >
-          <span class="download-tile__platform">{{ download.platform }}</span>
-          <span class="download-tile__meta">{{ download.meta }}</span>
-          <span class="download-tile__file">{{ download.file }}</span>
-        </a>
-      </div>
+      <DownloadPlatforms v-if="data.newest.downloads.length" :downloads="data.newest.downloads" />
       <p v-if="noIntel" class="note-quiet">
         This build has no Intel Mac download; Rosetta runs Intel apps on Apple
         silicon, not the other way round. Releases after
