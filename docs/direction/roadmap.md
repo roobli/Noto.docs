@@ -165,7 +165,8 @@ first signed release instead. The unmarked items may follow in any release.
 
 ## Noto on the web {#web}
 
-Proposed by the owner and adopted as [D13](./decisions#decided): run Noto's core
+Proposed by the owner and adopted as [D13](./decisions#decided), with its gate
+re-pointed on 2026-10-20 to the first signed release: run Noto's core
 in the browser, and build this site with it. The site stops describing Noto
 and starts being made of it, so every page is evidence for the claim it makes.
 
@@ -228,13 +229,14 @@ Groundwork, which also helps the desktop app:
 | Phase | What ships | When |
 | --- | --- | --- |
 | **W0** | The engine preview on the engine Noto ships, and a check on every pull request and deploy that each page of this site comes back byte for byte from `@roobli/md`. The site's own pages become part of the engine's evidence. | Done |
-| **W1** | Pages drawn by Noto. This site's Markdown is rendered by the Noto core, with the app's schema, typography and node views, inside VitePress's shell, which stays for navigation and search. Server-render what the schema can for first paint; mount the read-only editor for exact visuals. | After `0.1.0` |
+| **W1** | Pages drawn by Noto. This site's Markdown is rendered by the Noto core, with the app's schema, typography and node views, inside VitePress's shell, which stays for navigation and search. Server-render what the schema can for first paint; mount the read-only editor for exact visuals. | After the first signed release |
 | **W2** | Edit this page, keep the file. Every page gets *Edit in Noto*: the page becomes editable in the browser, and saving assembles the file exactly as the desktop does and opens a pull request. The diff is the edit and nothing else. This is the pitch, demonstrated on every page. | After W1 |
 | **W3** | Noto for the web: a local folder through the File System Access API, or a public repository read-only. A second product surface, which needs its own case. | Decided after W2 has been used |
 
 The groundwork may run while the gate waits on certificates. Nothing in this
-track ships ahead of `0.1.0`, and none of it is a cloud: no accounts, no sync,
-no hosted notes.
+track ships ahead of the first signed release (D13 as amended on 2026-10-20;
+it named `0.1.0` before `0.0.3` shipped unsigned), and none of it is a cloud:
+no accounts, no sync, no hosted notes.
 
 ## Not on the roadmap {#no}
 

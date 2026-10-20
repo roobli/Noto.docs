@@ -17,7 +17,8 @@ const noIntel = computed(
         <a :href="data.newest.url"><strong>Noto {{ data.newest.version }}</strong></a>
         <span v-if="data.newest.published">, {{ data.newest.published }}</span>.
         <span v-if="data.newest.prerelease">
-          It is an alpha, a test build. The first release outside alpha will be 0.1.0.
+          It is an alpha, a test build. The first release outside alpha was 0.0.3,
+          shipped unsigned.
         </span>
         <a :href="data.releasesUrl">All releases</a>.
       </p>
