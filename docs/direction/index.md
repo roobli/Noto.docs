@@ -8,8 +8,8 @@ description: What Noto is for, who it serves, and how the projects around it rel
 ::: info Adopted 2026-09-29
 Drafted from a review of every public roobli repository and adopted by the
 owner on 2026-09-29; the [decision log](./decisions) records each decision and
-what is still open. Facts are as of Noto `v0.0.2-alpha.113` and `@roobli/md`
-`v0.1.19`.
+what is still open. Facts were first written as of Noto `v0.0.2-alpha.113`
+and updated on 2026-10-20 to Noto `v0.0.3` and `@roobli/md` `v0.1.20`.
 :::
 
 This section is where the project writes down what it is trying to be, so that
@@ -65,7 +65,7 @@ it.
 | --- | --- | --- | --- |
 | Round-trip editors (Typora and most rich Markdown editors) | Yes | No: the whole file passes through a serializer | Typora did not load Noto's 2 MB corpus file in three minutes |
 | Decorated-source editors (live-preview modes, iA Writer, code editors) | Partly: you still edit the syntax | Yes, by construction | Not measured here |
-| **Noto** | **Yes** | **Yes, per block** | **Opens 2 MB and 8 MB files; mid-size open time still behind** |
+| **Noto** | **Yes** | **Yes, per block** | **Opens an 8 MB file in about a second and a quarter; not yet re-measured beside Typora** |
 
 That table is the pitch. Noto should win the first two columns outright and
 stay honest about the third. It does not need to win anything else.
@@ -101,9 +101,9 @@ or waits its turn.
 
 | Repository | Role | License | Maturity | Proposed stance |
 | --- | --- | --- | --- | --- |
-| [Noto](https://github.com/roobli/Noto) | The product | AGPL-3.0-only | `0.0.2-alpha` | All roadmap focus. |
+| [Noto](https://github.com/roobli/Noto) | The product | AGPL-3.0-only | `0.0.3`, the first release outside alpha, unsigned | All roadmap focus. |
 | [@roobli/md](https://github.com/roobli/md) | The platform: Noto's engine | MIT | `0.1.x`, consumed by git tag | A library with a contract: changelog, API reference, semver, npm once the contract settles. |
-| [Noto.docs](https://github.com/roobli/Noto.docs) | The front door, and the first web host of Noto's core | None yet | Live; release facts generated at build time | The single source of truth for users, built with Noto's own engine ([web track](./roadmap#web)). |
+| [Noto.docs](https://github.com/roobli/Noto.docs) | The front door, and the first web host of Noto's core | CC BY 4.0 for prose, MIT for code | Live; release facts generated at build time | The single source of truth for users, built with Noto's own engine ([web track](./roadmap#web)). |
 | [noto-plugin-template](https://github.com/roobli/noto-plugin-template) | Future ecosystem | MIT | Scaffold for a door not yet open | Keep, clearly labelled, until user-installed plugins ship. |
 | [@roobli/canvas](https://github.com/roobli/canvas) | Experiment | MIT | v0, no host | Freeze and label experimental until Noto decides to host canvas documents. |
 | [holt](https://github.com/roobli/holt) | Separate companion | MIT | `0.0.1`, unpublished | Outside Noto's story. Decide whether it is a product or a published personal tool. |

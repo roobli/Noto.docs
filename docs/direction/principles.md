@@ -6,13 +6,14 @@ description: The rules a change to Noto is judged by, and where Noto stands agai
 # Principles
 
 ::: info Adopted 2026-09-29
-The owner adopted these principles on 2026-09-29. The "Today" notes are as of
-`v0.0.2-alpha.113`.
+The owner adopted these principles on 2026-09-29. The "Today" notes were
+written as of `v0.0.2-alpha.113`; those that have changed since were updated
+on 2026-10-20, as of `v0.0.3` and `main`.
 :::
 
 Eight rules. A change that breaks one needs its reason written down. A change
 that serves none of them probably should not be made. Each rule names a test,
-and where Noto stands against it as of `v0.0.2-alpha.113`.
+and where Noto stands against it.
 
 ## 1. The file is the product
 
@@ -23,8 +24,12 @@ keep a note in a form only Noto understands.
 **Test.** Open and save without editing gives identical bytes. An edit appears
 in `git diff` as that edit and nothing else.
 
-**Today.** Holds, and is enforced by golden fixtures and a reparse proof on
-every serialize. The named exception is an edit to the blank lines between
+**Today.** Holds, and is enforced by golden fixtures, a reparse proof on
+every serialize, and, since 17 October, a round-trip property test that makes
+random edits to a large note and requires each save to parse back to what the
+editor shows. That test and the work after it found save bugs in edited
+blocks, all in `0.0.3` and fixed on `main`; they are listed under
+[Now](./roadmap#now). Untouched blocks were never affected. The named exception is an edit to the blank lines between
 blocks, which falls back to a whole-file write for that save. That trade is
 documented and should stay visible rather than be hidden.
 
@@ -39,12 +44,14 @@ people who asked to be careful.
 with no warning dialog. Each update channel delivers only what its name
 promises. A save that could lose data is refused, never guessed.
 
-**Today.** Conflict-safe saving and recovery hold. Signing and notarization do
-not exist yet. And Stable is broken: dozens of alpha releases are flagged on
-GitHub as full releases, and the updater trusts that flag alone, so Stable
-currently resolves to `v0.0.2-alpha.109`. Both are first in
-[Now](./roadmap#now); the channel fix is in review in
-[roobli/Noto#289](https://github.com/roobli/Noto/pull/289).
+**Today.** Conflict-safe saving and recovery hold. Stable is repaired
+([roobli/Noto#289](https://github.com/roobli/Noto/pull/289)): a version with a
+prerelease component is never offered there, and the first full release on
+it, `0.0.3`, shipped on 17 October. Signing and notarization still do not
+exist; `0.0.3` is unsigned by decision ([D2, amended](./decisions#decided)),
+so the first minute is still a warning dialog. Until that changes, the app
+installs no update itself
+([roobli/Noto#329](https://github.com/roobli/Noto/pull/329)).
 
 ## 3. Defaults are the product
 
@@ -91,9 +98,10 @@ release.
 current default engine, and says when.
 
 **Today.** The method is excellent: clocks inside both applications, failed
-approaches written down, a split result reported as split. But the headline
-numbers predate the switch to `@roobli/md` and have not been re-measured on a
-packaged build since. They are better or worse now, and nobody knows which.
+approaches written down, a split result reported as split. Since 29 September
+a benchmark workflow measures a packaged build on every tag, and the README
+quotes the run for `v0.0.2-alpha.114`, dated. The comparison with Typora
+still predates `@roobli/md` and says so.
 
 ## 6. A setting is a decision not yet made
 
@@ -105,10 +113,11 @@ must be tested, documented and supported for as long as it exists.
 never touches it.
 
 **Today.** Settings is one quiet surface with good grouping: Appearance,
-Editor, Markdown, Images, Updates, then Remote and Plugins set lower. Before
-the first non-alpha release it is worth one audit of which settings exist
-because readers need them and which arrived with a plugin port, such as
-uploading images through PicGo.app.
+Editor, Markdown, Images, Updates, then Remote and Plugins set lower. It
+still wants one audit of which settings exist because readers need them and
+which arrived with a plugin port, such as uploading images through PicGo.app.
+The audit was recommended before the first release outside alpha; `0.0.3`
+shipped without it.
 
 ## 7. Native where it counts
 
@@ -123,8 +132,8 @@ runs the macOS version it targets.
 **Today.** Title-bar avoidance and menus are done with care. Accessibility has
 not been audited. Releases up to `v0.0.2-alpha.113` are Apple silicon only,
 so an Intel Mac could not run them: Rosetta translates Intel code for Apple
-silicon, not the other way round. The README and this site now say so; whether to ship an
-Intel build is settled by [D8](./decisions#decided): later releases carry one.
+silicon, not the other way round. Per [D8](./decisions#decided), every release
+since carries an Intel zip, `0.0.3` included.
 
 ## 8. Say only what is true
 
@@ -165,14 +174,18 @@ soon a new person would meet them.
 4. **Typography should follow the script** (rule 3).
 5. **Saving automatically deserves a second look.** On macOS, documents save
    themselves; that is the platform's promise. Noto's reasons for leaving it
-   off are real: a save on a very large file costs up to seconds, and a
-   conflict must be refused rather than resolved silently. Once save cost is
-   bounded, the default should be reconsidered. Until then the dirty dot
-   remains the right, and only, signal.
-6. **Release notes are interface.** Today they read as engine logs: lazy
+   off are real: a conflict must be refused rather than resolved silently,
+   and a save of the 8 MB benchmark note cost about three seconds in
+   September. It is under half a second now, which is the condition
+   [D11](./decisions#decided) set for reconsidering the default. Until that
+   is decided the dirty dot remains the right, and only, signal.
+6. **Release notes are interface.** They used to read as engine logs: lazy
    empty containers, `MAX_MARK_NEST`. The person reading them in
    Settings → Updates wants to know what changed for them, with the engine
-   detail one link away.
-7. **File names are interface.** `noto_0.0.2.alpha.113_amd64-0.0.2-alpha.113.deb`
-   carries its version twice, in two spellings. The name of the thing someone
+   detail one link away. Since
+   [roobli/Noto#291](https://github.com/roobli/Noto/pull/291) they come from a
+   changelog written that way.
+7. **File names are interface.** `noto_0.0.2.alpha.114_amd64-0.0.2-alpha.114.deb`
+   carries its version twice, in two spellings; a full release reads
+   `noto_0.0.3_amd64.deb`, but every alpha still has the doubled name. The name of the thing someone
    downloads is the first piece of Noto they see.
