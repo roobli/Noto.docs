@@ -1,9 +1,16 @@
-import DefaultTheme from 'vitepress/theme'
+// Without VitePress's bundled Inter: the site uses the native system stack.
+import DefaultTheme from 'vitepress/theme-without-fonts'
 import type { Theme } from 'vitepress'
 import ScreenshotToggle from './components/ScreenshotToggle.vue'
 import RoobliMdView from './components/RoobliMdView.vue'
 import DownloadTiles from './components/DownloadTiles.vue'
-import './custom.css'
+import './styles/tokens.css'
+import './styles/base.css'
+import './styles/chrome.css'
+import './styles/doc.css'
+import './styles/home.css'
+import './styles/components.css'
+import './styles/motion.css'
 
 const Theme: Theme = {
   extends: DefaultTheme,

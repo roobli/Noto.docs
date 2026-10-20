@@ -1,0 +1,328 @@
+/* —— Chrome: top bar, sidebar, outline, pager, footer, search ——
+ * VitePress owns the navigation model (top bar + section sidebar + page
+ * outline); this file only gives it the light-document grammar: 13px
+ * labels, 8px surfaces on hover, hairline separators, no movement. */
+
+/* Top bar: one translucent layer with a constant hairline */
+.VPNav,
+.VPNavBar,
+.VPNavBar.has-sidebar,
+.VPNavBar:not(.home.top) {
+  background: transparent;
+}
+
+.VPNavBar {
+  border-bottom: 1px solid var(--cd-line);
+  background: color-mix(in srgb, var(--cd-bg) 92%, transparent) !important;
+  -webkit-backdrop-filter: saturate(1.2) blur(8px);
+  backdrop-filter: saturate(1.2) blur(8px);
+}
+
+.VPNavBar .divider,
+.VPNavBar.has-sidebar .content-body,
+.VPNavBar .content-body,
+.VPNavBar .wrapper > .container > .title {
+  background: transparent !important;
+}
+
+.VPNavBar .divider-line {
+  display: none;
+}
+
+@media (min-width: 960px) {
+  .VPNavBar.has-sidebar .title {
+    border-bottom: 0 !important;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .VPNavBar {
+    background: var(--cd-bg) !important;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+.VPNavBarTitle .title {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--cd-ink);
+  gap: 8px;
+}
+
+.VPNavBarMenuLink,
+.VPNavBarMenuGroup .button {
+  height: 30px;
+  margin: 0 1px;
+  padding: 0 10px;
+  border-radius: var(--cd-r-control);
+  line-height: 30px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--cd-sub);
+  transition: color var(--cd-hover) ease, background-color var(--cd-hover) ease;
+}
+
+.VPNavBarMenuLink:hover,
+.VPNavBarMenuGroup .button:hover {
+  color: var(--cd-ink);
+  background: var(--cd-soft);
+}
+
+.VPNavBarMenuLink.active {
+  color: var(--cd-ink);
+  background: var(--cd-soft);
+}
+
+.VPNavBarMenuGroup .text {
+  font-size: 13px;
+}
+
+.VPNavBarSocialLinks .VPSocialLink,
+.VPNavBarExtra .button {
+  color: var(--cd-muted);
+}
+
+.VPNavBarSocialLinks .VPSocialLink:hover {
+  color: var(--cd-ink);
+}
+
+/* Search trigger: a quiet field, not a pill */
+.VPNavBarSearch .DocSearch-Button {
+  height: 32px;
+  border: 1px solid var(--cd-line);
+  border-radius: var(--cd-r-control);
+  background: var(--cd-card);
+  transition: border-color var(--cd-hover) ease;
+}
+
+.VPNavBarSearch .DocSearch-Button:hover {
+  border-color: var(--cd-line-strong);
+  background: var(--cd-card);
+}
+
+.VPNavBarSearch .DocSearch-Button-Placeholder {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--cd-muted);
+}
+
+.VPNavBarSearch .DocSearch-Button .DocSearch-Button-Key {
+  border-color: var(--cd-line);
+  font-size: 11px;
+}
+
+/* Appearance switch: hairline track, flat thumb */
+.VPSwitch {
+  border-color: var(--cd-line-strong) !important;
+  background-color: var(--cd-soft) !important;
+}
+
+.VPSwitch .check {
+  box-shadow: var(--cd-shadow) !important;
+  background-color: var(--cd-card) !important;
+}
+
+/* Mobile local nav (menu + "On this page") */
+.VPLocalNav {
+  border-bottom: 1px solid var(--cd-line) !important;
+  background: color-mix(in srgb, var(--cd-bg) 92%, transparent) !important;
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+.VPLocalNav .menu-text,
+.VPLocalNavOutlineDropdown button {
+  font-size: 13px;
+}
+
+/* Sidebar: grouped list with a surface for the current page */
+.VPSidebar {
+  border-right: 1px solid var(--cd-line);
+}
+
+@media (min-width: 960px) {
+  .VPSidebar {
+    padding-top: calc(var(--vp-nav-height) + 20px) !important;
+  }
+}
+
+.VPSidebarItem.level-0 {
+  padding-bottom: 16px;
+}
+
+.VPSidebarItem.level-0 > .item > .text,
+.VPSidebarItem.level-0 > .item .text {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--cd-muted);
+}
+
+.VPSidebarItem.level-1 .item {
+  padding: 0;
+}
+
+.VPSidebarItem.level-1 .link {
+  margin: 1px 0 1px -10px;
+  padding: 5px 10px;
+  border-radius: var(--cd-r-control);
+  transition: background-color var(--cd-hover) ease;
+}
+
+.VPSidebarItem.level-1 .text {
+  padding: 0;
+  font-size: 13.5px;
+  line-height: 1.45;
+  font-weight: 400;
+  color: var(--cd-sub);
+  transition: color var(--cd-hover) ease;
+}
+
+.VPSidebarItem.level-1 .link:hover {
+  background: var(--cd-soft);
+}
+
+.VPSidebarItem.level-1 .link:hover .text {
+  color: var(--cd-ink);
+}
+
+.VPSidebarItem.level-1.is-active > .item .link {
+  background: var(--cd-soft);
+}
+
+.VPSidebarItem.level-1.is-active > .item .link .text {
+  color: var(--cd-ink);
+  font-weight: 600;
+}
+
+.VPSidebarItem .indicator {
+  display: none;
+}
+
+/* Outline: compact, brand rule marks the current section */
+.VPDocAsideOutline .outline-title {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--cd-muted);
+}
+
+.VPDocAsideOutline .content {
+  border-left: 1px solid var(--cd-line);
+}
+
+.VPDocAsideOutline .outline-marker {
+  width: 2px;
+  left: -1px;
+  background-color: var(--cd-brand);
+}
+
+.VPDocOutlineItem .outline-link {
+  font-size: 12.5px;
+  line-height: 26px;
+  color: var(--cd-sub);
+  transition: color var(--cd-hover) ease;
+}
+
+.VPDocOutlineItem .outline-link:hover,
+.VPDocOutlineItem .outline-link.active {
+  color: var(--cd-ink);
+}
+
+.VPDocOutlineItem .outline-link.active {
+  font-weight: 500;
+}
+
+/* Doc footer: edit link, last updated, pager */
+.VPDocFooter .edit-info {
+  padding-bottom: 14px;
+}
+
+.VPDocFooter .edit-link-button,
+.VPDocFooter .VPLastUpdated {
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--cd-muted);
+}
+
+.VPDocFooter .edit-link-button:hover {
+  color: var(--cd-brand);
+}
+
+.VPDocFooter .prev-next {
+  border-top: 1px solid var(--cd-line);
+  padding-top: 20px;
+}
+
+.VPDocFooter .pager-link {
+  border: 1px solid var(--cd-line);
+  border-radius: var(--cd-r-panel);
+  background: var(--cd-card);
+  padding: 12px 16px;
+  transition: border-color var(--cd-hover) ease;
+}
+
+.VPDocFooter .pager-link:hover {
+  border-color: var(--cd-line-strong);
+}
+
+.VPDocFooter .desc {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--cd-muted);
+}
+
+.VPDocFooter .title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--cd-ink);
+}
+
+/* Site footer: a single quiet line of terms */
+.VPFooter {
+  padding: 28px var(--cd-gutter) 36px !important;
+  border-top: 1px solid var(--cd-line) !important;
+  background: var(--cd-bg) !important;
+}
+
+.VPFooter .container {
+  max-width: var(--cd-wrap);
+}
+
+.VPFooter .message,
+.VPFooter .copyright {
+  font-size: 12.5px !important;
+  line-height: 1.6 !important;
+  color: var(--cd-muted) !important;
+}
+
+.VPFooter a {
+  color: var(--cd-sub);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: var(--cd-line-strong);
+  text-underline-offset: 3px;
+}
+
+/* Local search dialog */
+.VPLocalSearchBox .shell {
+  border: 1px solid var(--cd-line);
+  border-radius: var(--cd-r-panel) !important;
+  background: var(--cd-card) !important;
+}
+
+.VPLocalSearchBox .search-bar {
+  border-radius: var(--cd-r-control) !important;
+  border-color: var(--cd-line) !important;
+}
+
+.VPLocalSearchBox .result {
+  border-radius: var(--cd-r-control) !important;
+  border-color: var(--cd-line) !important;
+}
+
+.VPLocalSearchBox .result.selected {
+  border-color: var(--cd-brand) !important;
+}

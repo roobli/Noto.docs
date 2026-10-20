@@ -1,0 +1,30 @@
+/* —— Base: type rendering, focus, selection —— */
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--cd-font);
+  font-feature-settings: 'kern';
+}
+
+::selection {
+  background: var(--cd-brand-soft);
+}
+
+/* Focus is clear rather than decorative, and never removed */
+:focus-visible,
+button:focus-visible,
+.DocSearch-Button:focus-visible,
+.VPSwitch:focus-visible {
+  outline: 2px solid var(--cd-focus);
+  outline-offset: 2px;
+}
+
+/* Every anchor target clears the sticky bar */
+.vp-doc [id] {
+  scroll-margin-top: calc(var(--vp-nav-height) + 24px);
+}

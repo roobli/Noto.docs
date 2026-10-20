@@ -1,0 +1,226 @@
+/* —— Home ——
+ * One big idea: the editor itself (the screenshot). The hero orients
+ * rather than persuades: a left-aligned statement on the reading measure,
+ * the facts as a ruled index (no card grid, no icon tiles), then the
+ * product, then downloads. Everything sits on one 1080px column. */
+
+.VPHome {
+  padding-bottom: 72px !important;
+}
+
+/* Hero */
+.VPHero,
+.VPHero.has-image {
+  padding: calc(var(--vp-nav-height) + 40px) var(--cd-gutter) 28px !important;
+}
+
+@media (min-width: 960px) {
+  .VPHero,
+  .VPHero.has-image {
+    padding: calc(var(--vp-nav-height) + 72px) var(--cd-gutter) 36px !important;
+  }
+}
+
+.VPHero .container {
+  max-width: var(--cd-wrap) !important;
+  text-align: left !important;
+}
+
+.VPHero .main {
+  max-width: 780px !important;
+}
+
+.VPHero .heading {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.VPHero .name,
+.VPHero .name.clip {
+  order: 0;
+  max-width: none;
+  font-size: 13px !important;
+  line-height: 1.3 !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.02em;
+  color: var(--cd-brand) !important;
+  background: none !important;
+  -webkit-text-fill-color: currentColor;
+}
+
+.VPHero .text {
+  max-width: none !important;
+  font-size: 30px !important;
+  line-height: 1.15 !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.025em;
+  color: var(--cd-ink);
+}
+
+@media (min-width: 640px) {
+  .VPHero .text {
+    font-size: 36px !important;
+    line-height: 1.12 !important;
+  }
+}
+
+.VPHero .tagline {
+  max-width: 640px !important;
+  margin: 0 !important;
+  padding-top: 16px !important;
+  font-size: 16px !important;
+  line-height: 1.65 !important;
+  font-weight: 400;
+  color: var(--cd-sub) !important;
+}
+
+.VPHero .actions {
+  justify-content: flex-start !important;
+  gap: 8px;
+  margin: 0 -4px;
+  padding-top: 24px !important;
+}
+
+.VPHero .action {
+  padding: 4px !important;
+}
+
+/* Buttons — real links, 36px high, 8px corners */
+.VPButton.medium {
+  height: 36px;
+  padding: 0 16px !important;
+  border-radius: var(--cd-r-control) !important;
+  font-size: 14px !important;
+  line-height: 34px !important;
+  font-weight: 500 !important;
+}
+
+/* The facts: a three-column ruled index */
+.VPFeatures {
+  padding: 20px var(--cd-gutter) 0 !important;
+}
+
+.VPFeatures .container {
+  max-width: var(--cd-wrap) !important;
+}
+
+.VPFeatures .items {
+  margin: 0 !important;
+  display: grid !important;
+  grid-template-columns: 1fr;
+  column-gap: 32px;
+}
+
+@media (min-width: 640px) {
+  .VPFeatures .items {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 960px) {
+  .VPFeatures .items {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.VPFeatures .item {
+  width: auto !important;
+  padding: 0 !important;
+}
+
+.VPFeature {
+  height: 100%;
+  border: 0 !important;
+  border-top: 1px solid var(--cd-line) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+
+.VPFeature .box {
+  padding: 16px 0 22px !important;
+}
+
+/* The stroke icons repeat the titles; the index reads cleaner without them */
+.VPFeature .icon {
+  display: none !important;
+}
+
+.VPFeature .title {
+  padding: 0 !important;
+  font-size: 14.5px !important;
+  line-height: 1.35 !important;
+  font-weight: 600 !important;
+  letter-spacing: -0.005em;
+  color: var(--cd-ink);
+}
+
+.VPFeature .details {
+  padding-top: 6px !important;
+  font-size: 13.5px !important;
+  line-height: 1.6 !important;
+  font-weight: 400 !important;
+  color: var(--cd-sub) !important;
+}
+
+/* Markdown body under the hero */
+.VPHome .VPHomeContent,
+.VPHome > .vp-doc.container,
+.VPHome .vp-doc.container {
+  max-width: calc(var(--cd-wrap) + 2 * var(--cd-gutter)) !important;
+  padding: 0 var(--cd-gutter) !important;
+}
+
+.VPHome .vp-doc h2 {
+  margin-top: 56px;
+  padding-top: 30px;
+  font-size: 21px;
+}
+
+.VPHome .vp-doc h2 .header-anchor {
+  top: 30px;
+}
+
+.VPHome .vp-doc > div > p,
+.VPHome .vp-doc > div > ul {
+  max-width: 760px;
+}
+
+/* Links row and closing line */
+.vp-doc ul.links-quiet {
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.vp-doc ul.links-quiet li {
+  margin: 0;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--cd-line);
+  font-size: 14px;
+  color: var(--cd-muted);
+}
+
+.vp-doc ul.links-quiet li:first-child {
+  border-top: 1px solid var(--cd-line);
+}
+
+.vp-doc ul.links-quiet li::marker {
+  content: '';
+}
+
+.note-quiet {
+  margin: 16px 0;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--cd-sub) !important;
+}
+
+.home-closing {
+  margin-top: 40px !important;
+  padding-top: 20px;
+  border-top: 1px solid var(--cd-line);
+  font-size: 13px !important;
+  line-height: 1.6 !important;
+  color: var(--cd-muted) !important;
+}
