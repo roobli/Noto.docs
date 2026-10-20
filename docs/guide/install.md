@@ -1,16 +1,19 @@
 # Install and first open
 
 The newest build is on the [Download](../download) page, and every build is on
-the [releases page](https://github.com/roobli/Noto/releases). The current line
-is **0.0.2-alpha**; alphas are labelled. The first release outside alpha will be
-0.1.0.
+the [releases page](https://github.com/roobli/Noto/releases). The current
+release is **0.0.3**, the first outside alpha, published on 17 October 2026.
+Alphas continue between releases and are labelled.
 
-Until Noto is signed with an Apple Developer ID and notarized (and an equivalent
-Windows certificate), each OS will warn once the first time you open a
-download. That is expected. Follow the steps below so the first launch is
-smooth.
+0.0.3 ships unsigned on purpose: on macOS it is ad-hoc signed and not
+notarized, and on Windows the installer is not code-signed. Until Noto is
+signed with an Apple Developer ID and notarized (and an equivalent Windows
+certificate), each OS will warn once the first time you open a download. That
+is expected. Follow the steps below so the first launch is smooth.
 
 ## macOS
+
+Mac builds come as a zip; there is no `.dmg` yet.
 
 1. Download `Noto-<version>-macos-arm64.zip` for Apple silicon, or
    `Noto-<version>-macos-x64.zip` for an Intel Mac. The Intel zip is in
@@ -59,7 +62,13 @@ Packaged builds can check GitHub Releases from **Settings → Updates**:
 - **Stable** (default) — formal releases only
 - **Testing** — includes prerelease alphas
 
-Check-on-launch and auto-download are off by default.
+Check-on-launch is off by default. Until builds are signed, Noto does not
+install an update itself on any platform: a found update opens its download on
+the release page, and you install it as above. That holds from the first
+release after 0.0.3
+([roobli/Noto#329](https://github.com/roobli/Noto/pull/329)), which also hides
+the setting to download automatically. An unsigned app replacing itself
+silently is exactly what the system's first-open warnings exist to stop.
 
 ## After install
 

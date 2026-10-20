@@ -7,8 +7,8 @@ description: Three horizons for Noto, the gate between each, how releases work, 
 
 ::: info Adopted 2026-09-29
 The owner adopted this roadmap on 2026-09-29; each decision behind it is in
-the [decision log](./decisions#decided). The first release outside alpha is
-`0.1.0`.
+the [decision log](./decisions#decided). The first release outside alpha was
+`0.0.3`, on 2026-10-17, shipped unsigned under D2 as amended that day.
 :::
 
 Three horizons, each ending in a gate rather than a date. Work moves to the
@@ -16,10 +16,11 @@ next horizon when the gate is met, not when the calendar says so.
 
 ## Now: make it trustworthy {#now}
 
-**Gate:** `0.1.0`, the first release outside alpha. Per
-[D2](./decisions#decided) it requires `@roobli/md` on by default (done in
-`v0.0.2-alpha.112`) and the items marked **gate** below. The unmarked items
-may follow in the next release.
+**Gate:** the first release outside alpha. [D2](./decisions#decided) named it
+`0.1.0` and required `@roobli/md` on by default (done in `v0.0.2-alpha.112`)
+and the items marked **gate** below. As amended on 2026-10-17, it became
+`0.0.3`, shipped that day without signing; the signing items now gate the
+first signed release instead. The unmarked items may follow in any release.
 
 1. **Stable means stable.** Gate. Done in
    [roobli/Noto#289](https://github.com/roobli/Noto/pull/289): the release
@@ -32,7 +33,8 @@ may follow in the next release.
      release" and is misled the same way.
    - Create the GitHub release in the release workflow, with the prerelease
      flag derived from the tag, so a hand-made release cannot drift again.
-2. **Signed and notarized on macOS.** Gate. The release workflow signs,
+2. **Signed and notarized on macOS.** Gate for the first signed release,
+   deferred from `0.0.3`. The release workflow signs,
    notarizes and verifies as soon as the credentials exist
    ([roobli/Noto#291](https://github.com/roobli/Noto/pull/291), with the list
    in `RELEASING.md`); what remains is the account and the certificate.
@@ -50,13 +52,16 @@ may follow in the next release.
      already prescribes.
    - Retire the first-open instructions only after a notarized build passes
      that check.
+   - Until then the app installs no update itself on any platform; a found
+     update opens its download
+     ([roobli/Noto#329](https://github.com/roobli/Noto/pull/329)).
 3. **Signed on Windows.** SmartScreen is the same first-minute problem on the
    other platform. Signing through the SignPath Foundation's open-source
    programme ([D15](./decisions#decided)); the application comes first.
 4. **Every Mac.** Gate, met in the release workflow
    ([D8](./decisions#decided)): each release builds an Intel zip beside the
    Apple silicon one, and the update feed lists both.
-5. **Numbers that are current.** Gate. Re-measure open, keystroke and save on
+5. **Numbers that are current.** Gate, met. Re-measure open, keystroke and save on
    packaged builds with `@roobli/md` as the default, against the same Typora
    and corpus, and replace the README table. Keep the old table in the
    measurement record with its date.
@@ -71,19 +76,49 @@ may follow in the next release.
      checker that froze the window for over a minute each time typing paused
      in the 8 MB test document
      ([roobli/Noto#295](https://github.com/roobli/Noto/pull/295)).
-   - Still open: the comparison with Typora, repeated with the current engine
-     on a Mac that has Typora installed.
+   - October's work on long notes followed from those numbers: fences,
+     tables and display math far from the caret drawn as they scroll into
+     view, runs of off-screen blocks kept as single placeholders, a save
+     that writes out only the blocks that changed, and the document crossing
+     between processes once instead of twice. In the packaged benchmark for
+     `v0.0.2-alpha.114`, the 8 MB document opens in about a second and a
+     quarter instead of ten, a keystroke takes about 21 ms instead of 86, and
+     a save under half a second instead of about three
+     ([measurements](https://github.com/roobli/Noto/blob/main/docs/performance/measurements.md)).
+   - Still open, and deferred to the first signed release: the comparison
+     with Typora, repeated with the current engine on a Mac that has Typora
+     installed.
 6. **An honest front door.** Done: download links and version
    facts on this site are generated from the Releases API at build time;
    screenshots are retaken on the current chrome against a synthetic vault, in
    English and Chinese; the README's download table matches what releases
-   carry. A macOS retake of the screenshots is still wanted before `0.1.0`.
+   carry. A macOS retake of the screenshots is still wanted.
 7. **Release notes for people.** Done in
    [roobli/Noto#291](https://github.com/roobli/Noto/pull/291): a
    `CHANGELOG.md` in [Keep a Changelog](https://keepachangelog.com/en/1.1.0/)
    form, written for the person updating, with engine detail linked to
    `@roobli/md`'s own changelog, and a `RELEASING.md` that turns
    [D4](./decisions#decided) into steps.
+8. **Saves that stay true under the speed work.** Done after `0.0.3`. The
+   sparse view depends on ProseMirror internals, so `prosemirror-view` is
+   pinned to `1.42.3` and its shape is checked at startup, with ordinary
+   rendering if the check fails
+   ([roobli/Noto#330](https://github.com/roobli/Noto/pull/330)). A
+   round-trip property test makes random edits to a 3,200-block note on the
+   sparse path and requires each save to parse back to the editor's document
+   ([roobli/Noto#333](https://github.com/roobli/Noto/pull/333)). It found
+   three save bugs, fixed with it. Later fixes close more, each also present
+   in `0.0.3`: a block edited before it finished loading saved its markup
+   escaped ([#335](https://github.com/roobli/Noto/pull/335)); literal stars
+   turned into italics ([#336](https://github.com/roobli/Noto/pull/336));
+   `&amp;` and its kin saved as `\&amp;`
+   ([#337](https://github.com/roobli/Noto/pull/337)); two lists merged when
+   the paragraph between them went
+   ([#339](https://github.com/roobli/Noto/pull/339)); and nested emphasis,
+   and bold inside italic, saved in a form that reopened differently
+   ([#340](https://github.com/roobli/Noto/pull/340),
+   [#341](https://github.com/roobli/Noto/pull/341)). None of these has been
+   released yet.
 
 ## Next: make it Noto's own {#next}
 
@@ -95,14 +130,18 @@ may follow in the next release.
 2. **Accessibility.** VoiceOver and Narrator through open, edit, save, quick
    open and Settings; keyboard reach for every control; contrast checked in
    both themes.
-3. **One engine.** Retire the micromark escape hatch once the agreed criteria
-   are met ([D12](./decisions#decided)): two releases on Stable with no
-   fidelity problem that needed it. Two parsers are two sets of bugs,
-   two golden baselines and a second question on every review.
+3. **One engine.** Done on 2026-10-17, ahead of
+   [D12](./decisions#decided)'s two-release criterion: the
+   `NOTO_MARKDOWN_ENGINE=micromark` switch and the old markdown pipelines are
+   gone ([roobli/Noto#332](https://github.com/roobli/Noto/pull/332)).
+   micromark and mdast remain only where the default engine uses them. Two
+   parsers were two sets of bugs, two golden baselines and a second question
+   on every review.
 4. **Open time.** The last side-by-side measurement, with the previous
    parser, had Typora 2.6 times faster on a 525 KB file. Close that gap with
-   the new engine, or explain it with new numbers measured on one machine. At 8
-   MB a keystroke still takes about five frames, which belongs here too.
+   the new engine, or explain it with new numbers measured on one machine.
+   The 8 MB keystroke, about five frames at the end of September, is now a
+   little over one.
 5. **Settings audit** ([rule 6](./principles#_6-a-setting-is-a-decision-not-yet-made)).
 6. **The writing loop**, in the order a writer meets it: paste, undo, input
    method composition, spell check, find, export. Each checked against
@@ -227,5 +266,6 @@ For context: 113 alphas were tagged between 5 and 28 September 2026, 23 of
 them in the last three days. At that rate the version number carries no
 information, and anyone on Testing is asked to update several times a day. A
 build is not a release. The table keeps the engineering pace and gives the
-version number its meaning back. The first release outside alpha will be
-`0.1.0` ([D3](./decisions#decided)).
+version number its meaning back. Since then the table has held: one alpha,
+`v0.0.2-alpha.114` on 12 October, then `0.0.3` on 17 October, the first
+release outside alpha ([D2, amended](./decisions#decided)).

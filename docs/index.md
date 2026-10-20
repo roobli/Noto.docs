@@ -34,7 +34,7 @@ features:
     details: An optional local HTTP API on loopback, token-gated, for scripts and agents on the same machine.
   - icon: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 18v3"/></svg>'
     title: Mac, Windows, Linux
-    details: Packaged builds for all three. The current line is 0.0.2-alpha; first-open Gatekeeper and SmartScreen warnings are expected until notarization.
+    details: Packaged builds for all three. 0.0.3 is the first release outside alpha. It is not yet signed, so Gatekeeper and SmartScreen warn on the first open.
 ---
 
 <ScreenshotToggle />

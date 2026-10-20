@@ -14,7 +14,9 @@ edited it.
 ## Before the first open
 
 Noto is not yet signed with an Apple Developer ID or a Windows code-signing
-certificate, so each system warns once on a fresh download. That is expected.
+certificate, so each system warns once on a fresh download. That is expected,
+and it is true of 0.0.3, the first release outside alpha, which ships unsigned
+on purpose.
 The [install guide](./guide/install) has the one step each platform needs.
 
 On macOS, from the folder that contains `Noto.app`:
@@ -33,12 +35,15 @@ xattr -cr Noto.app && open Noto.app
 | Debian and Ubuntu, x64 | a `.deb` package |
 | Fedora and openSUSE, x64 | an `.rpm` package |
 
-Take the zip for your Mac's chip; Apple menu → About This Mac says which.
+There is no `.dmg` yet. Take the zip for your Mac's chip; Apple menu → About
+This Mac says which.
 An Apple silicon Mac can also run the Intel build, under Rosetta; an Intel Mac
 cannot run the Apple silicon one.
 
 ## Staying current
 
 Settings → Updates checks GitHub Releases. **Stable**, the default, offers only
-full releases; **Testing** includes alphas. Nothing is checked or downloaded
-until you ask, unless you turn that on.
+full releases; **Testing** includes alphas. Nothing is checked until you ask,
+unless you turn checking on launch on. Until builds are signed, a found update
+opens its download on the release page rather than installing itself; see
+[Install](./guide/install#in-app-updates).
