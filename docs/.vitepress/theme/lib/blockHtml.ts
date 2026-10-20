@@ -72,7 +72,7 @@ function listHtml(kind: BlockKind, markdown: string): string {
     const inner = inlineToHtml(content)
     if (checked !== null) {
       items.push(
-        `<li class="rmd-task${checked ? ' is-checked' : ''}"><input type="checkbox" disabled${checked ? ' checked' : ''} /> <span>${inner}</span></li>`,
+        `<li class="rmd-task${checked ? ' is-checked' : ''}"><label><input type="checkbox" disabled${checked ? ' checked' : ''} /> <span>${inner}</span></label></li>`,
       )
     } else {
       items.push(`<li>${inner}</li>`)
@@ -109,12 +109,12 @@ function quoteHtml(markdown: string): string {
 function fencedCodeHtml(markdown: string): string {
   const m = markdown.match(/^```([^\n`]*)\n([\s\S]*?)\n```\s*$/)
   if (!m) {
-    return `<pre class="rmd-code"><code>${escapeHtml(trimTrailingNewline(markdown))}</code></pre>`
+    return `<pre class="rmd-code" tabindex="0"><code>${escapeHtml(trimTrailingNewline(markdown))}</code></pre>`
   }
   const lang = m[1].trim()
   const code = m[2]
   const langAttr = lang ? ` class="language-${escapeHtml(lang)}" data-lang="${escapeHtml(lang)}"` : ''
-  return `<pre class="rmd-code"${lang ? ` data-lang="${escapeHtml(lang)}"` : ''}><code${langAttr}>${escapeHtml(code)}</code></pre>`
+  return `<pre class="rmd-code" tabindex="0"${lang ? ` data-lang="${escapeHtml(lang)}"` : ''}><code${langAttr}>${escapeHtml(code)}</code></pre>`
 }
 
 function indentedCodeHtml(markdown: string): string {
@@ -122,7 +122,7 @@ function indentedCodeHtml(markdown: string): string {
     .split('\n')
     .map((line) => line.replace(/^ {4}/, '').replace(/^\t/, ''))
     .join('\n')
-  return `<pre class="rmd-code rmd-indented"><code>${escapeHtml(body)}</code></pre>`
+  return `<pre class="rmd-code rmd-indented" tabindex="0"><code>${escapeHtml(body)}</code></pre>`
 }
 
 function tableHtml(markdown: string): string {

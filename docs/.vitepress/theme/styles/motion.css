@@ -1,0 +1,37 @@
+/* —— Motion ——
+ * The site is read, not played with, so almost nothing moves.
+ *   Color/background/border on hover:  150ms ease   (feedback, gated below)
+ *   Press on primary actions:          scale(.97), 120ms strong ease-out
+ * No entrance animation, no hover lift, no scroll reveal, no smooth-scroll
+ * override. VitePress's own reduced-motion rule (transitions to 0s) stays
+ * in force; the press transform is removed there as well. */
+
+.VPButton,
+a.download-tile {
+  transition-property: color, background-color, border-color, transform;
+  transition-duration: var(--cd-hover), var(--cd-hover), var(--cd-hover), var(--cd-press);
+  transition-timing-function: ease, ease, ease, var(--cd-ease-out);
+}
+
+.VPButton:active {
+  transform: scale(0.97);
+}
+
+a.download-tile:active {
+  transform: scale(0.98);
+}
+
+/* Touch screens fire hover on tap; keep hover surfaces to fine pointers */
+@media not ((hover: hover) and (pointer: fine)) {
+  .VPNavBarMenuLink:hover:not(.active),
+  .VPSidebarItem.level-1:not(.is-active) .link:hover {
+    background: transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .VPButton:active,
+  a.download-tile:active {
+    transform: none;
+  }
+}
