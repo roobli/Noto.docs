@@ -53,9 +53,46 @@ export function installA11y(): void {
     })
   }
 
+  const focusable = (root: HTMLElement): HTMLElement[] =>
+    [...root.querySelectorAll<HTMLElement>(
+      'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+    )].filter((element) => isShown(element))
+
+  /*
+   * Keep Tab inside the open drawer, but include the control that opened it:
+   * the drawer has no close button of its own, so a trap that excluded the
+   * opener would leave no way out for a keyboard user.
+   */
+  const trap = (event: KeyboardEvent): void => {
+    if (event.key !== 'Tab') return
+    const screen = document.querySelector<HTMLElement>('.VPNavScreen')
+    const sidebar = document.querySelector<HTMLElement>('.VPSidebar.open')
+    const panel = isShown(screen) ? screen : isShown(sidebar) ? sidebar : null
+    if (!panel) return
+    const opener = panel === screen
+      ? document.querySelector<HTMLElement>('.VPNavBarHamburger')
+      : document.querySelector<HTMLElement>('.VPLocalNav .menu')
+    const items = [...(isShown(opener) ? [opener] : []), ...focusable(panel)]
+    if (items.length === 0) return
+    const active = document.activeElement
+    if (!(active instanceof HTMLElement) || !items.includes(active)) {
+      event.preventDefault()
+      items[0]!.focus()
+      return
+    }
+    if (event.shiftKey && active === items[0]) {
+      event.preventDefault()
+      items[items.length - 1]!.focus()
+    } else if (!event.shiftKey && active === items[items.length - 1]) {
+      event.preventDefault()
+      items[0]!.focus()
+    }
+  }
+
   const start = (): void => {
     markGroups()
     syncFocus()
+    document.addEventListener('keydown', trap, true)
     new MutationObserver(schedule).observe(document.body, {
       childList: true,
       subtree: true,
