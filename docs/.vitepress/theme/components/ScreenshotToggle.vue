@@ -11,7 +11,11 @@ type Lang = 'en' | 'zh'
 const mode = ref<Mode | null>(null)
 const lang = ref<Lang>('en')
 
-const srcFor = (m: Mode) => withBase(`/images/noto-${m}${lang.value === 'zh' ? '-zh' : ''}.png`)
+const fileFor = (m: Mode, width?: 768 | 1280) =>
+  withBase(`/images/noto-${m}${lang.value === 'zh' ? '-zh' : ''}${width ? `-${width}` : ''}.png`)
+const srcFor = (m: Mode) => fileFor(m)
+const srcsetFor = (m: Mode) =>
+  `${fileFor(m, 768)} 768w, ${fileFor(m, 1280)} 1280w, ${fileFor(m)} 2560w`
 const altFor = (m: Mode) =>
   `Noto editing ${lang.value === 'zh' ? 'a Chinese' : 'an English'} note with the file rail open, ${m} theme`
 
@@ -24,6 +28,7 @@ const caption = computed(() => {
 const { isDark } = useData()
 const mounted = ref(false)
 onMounted(() => (mounted.value = true))
+const shownMode = computed<Mode>(() => mode.value ?? (isDark.value ? 'dark' : 'light'))
 function pressed(option: Mode) {
   if (!mounted.value) return undefined
   const shown = mode.value ?? (isDark.value ? 'dark' : 'light')
@@ -70,10 +75,13 @@ function pressed(option: Mode) {
         class="shot-img"
         :class="`shot-img--${m}`"
         :src="srcFor(m)"
+        :srcset="srcsetFor(m)"
+        sizes="(max-width: 640px) calc(100vw - 48px), (max-width: 1200px) 80vw, 900px"
         :alt="altFor(m)"
         width="2560"
         height="1600"
-        loading="eager"
+        :loading="m === shownMode ? 'eager' : 'lazy'"
+        :fetchpriority="m === shownMode ? 'high' : 'auto'"
         decoding="async"
       />
     </div>

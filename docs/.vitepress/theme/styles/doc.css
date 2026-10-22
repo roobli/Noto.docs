@@ -225,10 +225,10 @@
   margin: 0;
 }
 
-/* Four or more columns: keep a readable minimum and let the frame scroll.
- * Two- and three-column tables reflow instead, so a row reads without
- * scrolling sideways on a phone. */
-.vp-doc .table-scroll > table:has(th:nth-child(4)) {
+/* Three or more columns: keep a readable minimum and let the frame scroll.
+ * The markdown renderer already gives three-column tables a focusable scroll
+ * region; two-column tables still reflow. */
+.vp-doc .table-scroll > table:has(th:nth-child(3)) {
   min-width: 680px;
 }
 
