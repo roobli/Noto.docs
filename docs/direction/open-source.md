@@ -37,9 +37,9 @@ that has none of its own, so most of this is written once.
 
 | Repository | README | LICENSE | CHANGELOG | CI | What needs attention |
 | --- | --- | --- | --- | --- | --- |
-| Noto | Yes | AGPL-3.0-only | Yes, since [#291](https://github.com/roobli/Noto/pull/291), with a `RELEASING.md` | Unit, then packaged end-to-end on three platforms | The README's status section still names the `0.0.2-alpha` line after `0.0.3`. |
+| Noto | Yes | AGPL-3.0-only | Yes, since [#291](https://github.com/roobli/Noto/pull/291), with a `RELEASING.md` | Unit, then packaged end-to-end on three platforms | The README's status section names `v0.0.3`. |
 | @roobli/md | A library landing page | MIT | Yes | Yes | Done: the README leads with what the engine guarantees, and the history is a changelog. |
-| Noto.docs | Yes | CC BY 4.0 for prose, MIT for code | No | A pull request check: every page round-trips byte for byte, and the site builds | Release facts now generated at build time and the engine preview on `v0.1.20`, the version Noto ships; several guides still duplicate pages in the Noto repository. |
+| Noto.docs | Yes | CC BY 4.0 for prose, MIT for code | No | A pull request check: every page round-trips byte for byte, and the site builds | Release facts now generated at build time and the engine preview on `v0.1.23`, the version Noto ships; several guides still duplicate pages in the Noto repository. |
 | @roobli/canvas | Good, labelled experimental | MIT | No | Yes | Frozen until Noto hosts canvas documents (D6). |
 | holt | English summary, then Chinese | MIT | No | Yes | Labelled a personal companion (D6). |
 | noto-plugin-template | Good | MIT | No | None | A template should typecheck against the API it targets. |
@@ -84,7 +84,7 @@ The rules that keep them accurate:
 1. Organization defaults in `.github`: done, except the code of conduct,
    which waits on a reporting contact (D16).
 2. Noto: a changelog and the README's download and performance sections are
-   done; the README's status section still needs `0.0.3`.
+   done, including the `v0.0.3` status and download sections.
 3. `@roobli/md`: done, the README rewritten as a library landing page and a
    changelog built from the phase history.
 4. This site: generated version facts, the current engine and a license are

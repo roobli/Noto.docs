@@ -5,7 +5,7 @@ titleTemplate: Edit the page. Keep the file.
 hero:
   name: Noto
   text: Edit the page. Keep the file.
-  tagline: A Markdown editor that edits the rendered document and keeps the file byte for byte. No preview pane. You type into headings, tables, task lists, math and fenced code directly.
+  tagline: A Markdown editor that edits the rendered document and keeps the file byte for byte. No preview pane. You type into headings, tables, task lists, math and fenced code directly. For a long-lived folder of notes, git and Typora habits.
   actions:
     - theme: brand
       text: Download
@@ -37,14 +37,14 @@ features:
     details: Packaged builds for all three.
 ---
 
-## Download
+## Get Noto
 
 <DownloadTiles />
 
 ## Links
 
 <ul class="links-quiet">
-  <li><a href="./guide/install">Docs</a></li>
+  <li><a href="./direction/">Why Noto</a></li>
   <li><a href="https://github.com/roobli/Noto">Source</a></li>
   <li><a href="https://github.com/roobli/noto-plugin-template">Plugin template</a></li>
   <li><a href="https://github.com/roobli/Noto/releases">Releases</a></li>
