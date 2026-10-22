@@ -79,6 +79,7 @@
   aspect-ratio: 2560 / 1600;
   background: var(--cd-soft);
 }
+.shot-media picture { display: block; }
 
 .shot-img {
   display: block;

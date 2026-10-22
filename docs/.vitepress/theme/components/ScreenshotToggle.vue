@@ -16,6 +16,10 @@ const fileFor = (m: Mode, width?: 768 | 1280) =>
 const srcFor = (m: Mode) => fileFor(m)
 const srcsetFor = (m: Mode) =>
   `${fileFor(m, 768)} 768w, ${fileFor(m, 1280)} 1280w, ${fileFor(m)} 2560w`
+const mobileFor = (m: Mode, width: 768 | 1280) =>
+  withBase(`/images/noto-${m}${lang.value === 'zh' ? '-zh' : ''}-mobile-${width}.png`)
+const mobileSrcsetFor = (m: Mode) =>
+  `${mobileFor(m, 768)} 768w, ${mobileFor(m, 1280)} 1280w`
 const altFor = (m: Mode) =>
   `Noto editing ${lang.value === 'zh' ? 'a Chinese' : 'an English'} note with the file rail open, ${m} theme`
 
@@ -69,21 +73,26 @@ function pressed(option: Mode) {
       </div>
     </div>
     <div class="shot-media">
-      <img
-        v-for="m in (['light', 'dark'] as const)"
-        :key="m"
-        class="shot-img"
-        :class="`shot-img--${m}`"
-        :src="srcFor(m)"
-        :srcset="srcsetFor(m)"
-        sizes="(max-width: 640px) calc(100vw - 48px), (max-width: 1200px) 80vw, 900px"
-        :alt="altFor(m)"
-        width="2560"
-        height="1600"
-        :loading="m === shownMode ? 'eager' : 'lazy'"
-        :fetchpriority="m === shownMode ? 'high' : 'auto'"
-        decoding="async"
-      />
+      <picture v-for="m in (['light', 'dark'] as const)" :key="m">
+        <source
+          media="(max-width: 640px)"
+          :srcset="mobileSrcsetFor(m)"
+          sizes="calc(100vw - 48px)"
+        />
+        <img
+          class="shot-img"
+          :class="`shot-img--${m}`"
+          :src="srcFor(m)"
+          :srcset="srcsetFor(m)"
+          sizes="(max-width: 640px) calc(100vw - 48px), (max-width: 1200px) 80vw, 900px"
+          :alt="altFor(m)"
+          width="2560"
+          height="1600"
+          :loading="m === shownMode ? 'eager' : 'lazy'"
+          :fetchpriority="m === shownMode ? 'high' : 'auto'"
+          decoding="async"
+        />
+      </picture>
     </div>
     <figcaption>{{ caption }}</figcaption>
   </figure>
