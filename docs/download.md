@@ -14,9 +14,10 @@ edited it.
 ## Before the first open
 
 Noto is not yet signed with an Apple Developer ID or a Windows code-signing
-certificate, so each system warns once on a fresh download. That is expected,
-and it is true of 0.0.3, the first release outside alpha, which ships unsigned
-on purpose.
+certificate, so macOS and Windows warn once on a fresh download. Linux
+packages are not code-signed and install without that warning. That is
+expected, and it is true of 0.0.3, the first release outside alpha, which
+ships unsigned on purpose.
 The [install guide](./guide/install) has the one step each platform needs.
 
 On macOS, from the folder that contains `Noto.app`:
@@ -44,6 +45,8 @@ cannot run the Apple silicon one.
 
 Settings → Updates checks GitHub Releases. **Stable**, the default, offers only
 full releases; **Testing** includes alphas. Nothing is checked until you ask,
-unless you turn checking on launch on. Until builds are signed, a found update
-opens its download on the release page rather than installing itself; see
+unless you turn checking on launch on. From the first release after 0.0.3, a
+found update opens its download on the release page rather than installing
+itself. 0.0.3 itself predates that policy: its packaged app can install an
+update after you press Download. See
 [Install](./guide/install#in-app-updates).

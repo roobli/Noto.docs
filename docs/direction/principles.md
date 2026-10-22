@@ -49,8 +49,9 @@ promises. A save that could lose data is refused, never guessed.
 prerelease component is never offered there, and the first full release on
 it, `0.0.3`, shipped on 17 October. Signing and notarization still do not
 exist; `0.0.3` is unsigned by decision ([D2, amended](./decisions#decided)),
-so the first minute is still a warning dialog. Until that changes, the app
-installs no update itself
+so the first minute is still a warning dialog. From the first release after
+0.0.3, the app installs no update itself; 0.0.3 itself can still install one
+after you press Download
 ([roobli/Noto#329](https://github.com/roobli/Noto/pull/329)).
 
 ## 3. Defaults are the product

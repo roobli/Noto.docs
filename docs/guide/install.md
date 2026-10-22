@@ -8,8 +8,9 @@ Alphas continue between releases and are labelled.
 0.0.3 ships unsigned on purpose: on macOS it is ad-hoc signed and not
 notarized, and on Windows the installer is not code-signed. Until Noto is
 signed with an Apple Developer ID and notarized (and an equivalent Windows
-certificate), each OS will warn once the first time you open a download. That
-is expected. Follow the steps below so the first launch is smooth.
+certificate), macOS and Windows warn once the first time you open a download;
+Linux packages are not code-signed and need no such warning. That is expected.
+Follow the steps below so the first launch is smooth.
 
 ## macOS
 
@@ -58,7 +59,7 @@ the release machine. Until then, the warning on first open is normal.
 
 - **Debian / Ubuntu:** `sudo apt install ./noto_<version>_amd64.deb` (exact
   filename varies by tag; check the release assets).
-- **Fedora / openSUSE:** `sudo rpm -i noto-<version>-….rpm`
+- **Fedora / openSUSE:** `sudo rpm -i noto-<version>-1.x86_64.rpm`
 
 No code signing is required on typical Linux desktops for these packages.
 

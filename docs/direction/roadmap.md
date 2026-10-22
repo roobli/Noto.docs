@@ -52,8 +52,9 @@ first signed release instead. The unmarked items may follow in any release.
      already prescribes.
    - Retire the first-open instructions only after a notarized build passes
      that check.
-   - Until then the app installs no update itself on any platform; a found
-     update opens its download
+   - From the first release after 0.0.3, the app installs no update itself on
+     any platform; a found update opens its download. 0.0.3 itself can install
+     one after the reader presses Download
      ([roobli/Noto#329](https://github.com/roobli/Noto/pull/329)).
 3. **Signed on Windows.** SmartScreen is the same first-minute problem on the
    other platform. Signing through the SignPath Foundation's open-source

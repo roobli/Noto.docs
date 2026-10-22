@@ -91,7 +91,7 @@
 /* Search trigger: a quiet field, not a pill */
 .VPNavBarSearch .DocSearch-Button {
   height: 32px;
-  border: 1px solid var(--cd-line);
+  border: 1px solid var(--cd-control-line);
   border-radius: var(--cd-r-control);
   background: var(--cd-card);
   transition: border-color var(--cd-hover) ease;
@@ -115,8 +115,17 @@
 
 /* Appearance switch: hairline track, flat thumb */
 .VPSwitch {
-  border-color: var(--cd-line-strong) !important;
+  position: relative;
+  border-color: var(--cd-control-line) !important;
   background-color: var(--cd-soft) !important;
+}
+
+/* Widen the pointer target without changing the drawn track: the default is
+   40x22, under the 24x24 minimum. */
+.VPSwitch::before {
+  content: '';
+  position: absolute;
+  inset: -3px -2px;
 }
 
 .VPSwitch .check {

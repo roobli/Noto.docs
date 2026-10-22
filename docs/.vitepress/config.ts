@@ -7,8 +7,7 @@ export default defineConfig({
     'A Markdown editor that edits the rendered document and keeps the file byte for byte.',
   base: '/Noto.docs/',
   cleanUrls: true,
-  lastUpdated: true,
-  ignoreDeadLinks: true,
+  lastUpdated: { formatOptions: { year: 'numeric', month: 'long', day: 'numeric' } },
 
   head: [
     ['link', { rel: 'icon', href: '/Noto.docs/favicon.svg', type: 'image/svg+xml' }],

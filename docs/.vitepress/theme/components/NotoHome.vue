@@ -23,7 +23,7 @@ const features = computed<Feature[]>(() => frontmatter.value.features ?? [])
 
 // Release facts come from GitHub Releases at build time; the license is the
 // one fact that does not, so it is the only literal here.
-const LICENSE = 'AGPL-3.0'
+const LICENSE = 'AGPL-3.0-only'
 const eyebrow = computed(() => {
   const parts: string[] = []
   const newest = releases.newest

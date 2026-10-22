@@ -17,6 +17,8 @@
   --cd-muted: #646a75; /* CD #8b8f97, darkened to clear 4.5:1 on every surface */
   --cd-line: #e6e8ec;
   --cd-line-strong: #d3d7dd;
+  /* Interactive edges: 4.16:1 on white, 3.91:1 on the page. Hairlines stay for rules. */
+  --cd-control-line: #767d87;
   --cd-rule: var(--cd-line);
 
   /* Brand: one accent, used for links, the primary action and current place */
@@ -73,6 +75,8 @@
   --cd-muted: #8a909a;
   --cd-line: #272b31;
   --cd-line-strong: #363b42;
+  /* Interactive edges: 3.54:1 on the dark page. */
+  --cd-control-line: #6a717a;
   --cd-rule: #1f2227; /* row rules inside tables: quieter than --cd-line */
 
   --cd-brand: #5cc6a6;

@@ -36,7 +36,7 @@ function trimTrailingNewline(s: string): string {
 function headingHtml(markdown: string): string {
   const m = markdown.match(/^(#{1,6})\s+(.*)$/s)
   if (!m) return `<p>${inlineToHtml(trimTrailingNewline(markdown))}</p>`
-  const level = m[1].length
+  const level = Math.min(6, Math.max(2, m[1].length + 1))
   const body = trimTrailingNewline(m[2]).replace(/\s+#+\s*$/, '')
   return `<h${level}>${inlineToHtml(body)}</h${level}>`
 }
