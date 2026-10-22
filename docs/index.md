@@ -37,6 +37,12 @@ features:
     details: Packaged builds for all three.
 ---
 
+## A closer look
+
+These six states come from the packaged build, not from mockups.
+
+<ShotGallery />
+
 ## Get Noto
 
 <DownloadTiles />

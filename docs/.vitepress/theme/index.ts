@@ -2,6 +2,7 @@
 import DefaultTheme from 'vitepress/theme-without-fonts'
 import type { Theme } from 'vitepress'
 import ScreenshotToggle from './components/ScreenshotToggle.vue'
+import ShotGallery from './components/ShotGallery.vue'
 import RoobliMdView from './components/RoobliMdView.vue'
 import DownloadTiles from './components/DownloadTiles.vue'
 import './styles/tokens.css'
@@ -19,6 +20,7 @@ const Theme: Theme = {
   extends: DefaultTheme,
   enhanceApp({ app }) {
     app.component('ScreenshotToggle', ScreenshotToggle)
+    app.component('ShotGallery', ShotGallery)
     app.component('RoobliMdView', RoobliMdView)
     app.component('DownloadTiles', DownloadTiles)
   },

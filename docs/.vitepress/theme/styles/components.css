@@ -418,3 +418,47 @@ a.dl-file:hover {
   line-height: 1.5;
   color: var(--cd-sub);
 }
+
+.shot-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin: 28px 0 8px;
+}
+
+.shot-gallery figure {
+  margin: 0;
+}
+
+.shot-gallery a {
+  display: block;
+  border-radius: 10px;
+}
+
+.shot-gallery a:focus-visible {
+  outline: 2px solid var(--vp-c-brand-1);
+  outline-offset: 3px;
+}
+
+.shot-gallery img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 10px;
+  background: var(--vp-c-bg-soft);
+}
+
+.shot-gallery figcaption {
+  margin-top: 10px;
+  color: var(--vp-c-text-2);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+@media (max-width: 720px) {
+  .shot-gallery {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
