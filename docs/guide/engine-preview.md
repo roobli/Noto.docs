@@ -2,7 +2,7 @@
 
 This page dogfoods Noto’s markdown core — [`@roobli/md`](https://github.com/roobli/md) — inside the public docs site. The goal is **自举**: the docs can show what the engine sees, in the browser, without shipping the full Electron editor shell.
 
-Read-only for now. Parsing uses `parseBlocks` from `@roobli/md` (v0.1.20, the version Noto ships). Blocks are mapped to simple HTML here; ProseMirror editing stays in the desktop app.
+Read-only for now. Parsing uses `parseBlocks` from `@roobli/md` (v0.1.23, the version on Noto's `main` branch; the released Noto v0.0.3 ships v0.1.20). Blocks are mapped to simple HTML here; ProseMirror editing stays in the desktop app.
 
 ## Live render
 

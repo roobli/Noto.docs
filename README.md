@@ -20,7 +20,7 @@ still live under `roobli/Noto/docs`; this site is the public hub.
 ## Dogfood path (`@roobli/md`)
 
 Noto’s markdown core is MIT-licensed as `@roobli/md`. This site depends on it
-(`github:roobli/md#v0.1.23`, the version Noto ships) and renders guide demos with a small Vue helper
+(`github:roobli/md#v0.1.23`, the version on Noto's `main` branch; the released Noto `v0.0.3` ships `v0.1.20`) and renders guide demos with a small Vue helper
 (`RoobliMdView`): `parseBlocks` → read-only HTML.
 
 That is the **自举** path toward browser-compatible notes/docs using the same

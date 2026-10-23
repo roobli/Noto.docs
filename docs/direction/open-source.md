@@ -39,7 +39,7 @@ that has none of its own, so most of this is written once.
 | --- | --- | --- | --- | --- | --- |
 | Noto | Yes | AGPL-3.0-only | Yes, since [#291](https://github.com/roobli/Noto/pull/291), with a `RELEASING.md` | Unit, then packaged end-to-end on three platforms | The README's status section names `v0.0.3`. |
 | @roobli/md | A library landing page | MIT | Yes | Yes | Done: the README leads with what the engine guarantees, and the history is a changelog. |
-| Noto.docs | Yes | CC BY 4.0 for prose, MIT for code | No | A pull request check: every page round-trips byte for byte, and the site builds | Release facts now generated at build time and the engine preview on `v0.1.23`, the version Noto ships; several guides still duplicate pages in the Noto repository. |
+| Noto.docs | Yes | CC BY 4.0 for prose, MIT for code | No | A pull request check: every page round-trips byte for byte, and the site builds | Release facts now generated at build time and the engine preview on `v0.1.23`, the version on Noto's `main` branch; several guides still duplicate pages in the Noto repository. |
 | @roobli/canvas | Good, labelled experimental | MIT | No | Yes | Frozen until Noto hosts canvas documents (D6). |
 | holt | English summary, then Chinese | MIT | No | Yes | Labelled a personal companion (D6). |
 | noto-plugin-template | Good | MIT | No | None | A template should typecheck against the API it targets. |
