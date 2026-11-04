@@ -9,6 +9,7 @@ description: Three horizons for Noto, the gate between each, how releases work, 
 The owner adopted this roadmap on 2026-09-29; each decision behind it is in
 the [decision log](./decisions#decided). The first release outside alpha was
 `0.0.3`, on 2026-10-17, shipped unsigned under D2 as amended that day.
+`0.0.4` followed on 2026-11-03, also unsigned.
 :::
 
 Three horizons, each ending in a gate rather than a date. Work moves to the
@@ -271,4 +272,6 @@ information, and anyone on Testing is asked to update several times a day. A
 build is not a release. The table keeps the engineering pace and gives the
 version number its meaning back. Since then the table has held: one alpha,
 `v0.0.2-alpha.114` on 12 October, then `0.0.3` on 17 October, the first
-release outside alpha ([D2, amended](./decisions#decided)).
+release outside alpha ([D2, amended](./decisions#decided)), then two alphas,
+`v0.0.4-alpha.1` on 25 October and `v0.0.4-alpha.2` on 27 October, the
+second early because its fixes protected files, and `0.0.4` on 3 November.

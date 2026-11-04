@@ -2,10 +2,10 @@
 
 The newest build is on the [Download](../download) page, and every build is on
 the [releases page](https://github.com/roobli/Noto/releases). The current
-release is **0.0.3**, the first outside alpha, published on 17 October 2026.
-Alphas continue between releases and are labelled.
+release is **0.0.4**, published on 3 November 2026; the first outside alpha was
+0.0.3, on 17 October. Alphas continue between releases and are labelled.
 
-0.0.3 ships unsigned on purpose: on macOS it is ad-hoc signed and not
+0.0.4 ships unsigned on purpose, as 0.0.3 did: on macOS it is ad-hoc signed and not
 notarized, and on Windows the installer is not code-signed. Until Noto is
 signed with an Apple Developer ID and notarized (and an equivalent Windows
 certificate), macOS and Windows warn once the first time you open a download;

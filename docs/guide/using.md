@@ -1,15 +1,19 @@
 # Using Noto
 
-Open a file with `Cmd+O`, or open a folder with `Cmd+Alt+O` to get the
+Open a file with `Cmd+O`, or open a folder with `Cmd+Alt+Shift+O` to get the
 workspace tree. Open notes sit behind a quiet Recent strip in the status bar
 rather than a classic tab bar. The rail on the left holds Files and Outline by
 default; Links (graph / related) stays off until you turn it on in Settings →
-Appearance. The one control at the top left opens and closes the rail, and
-`Cmd+Shift+L` and `Cmd+Shift+O` open it directly on the view they name.
-`Cmd+F` finds, `Cmd+Alt+F` finds and replaces, `Cmd+K` opens the command
-palette, and `Cmd+,` opens Settings (and closes it again) — a full-page shell with
-categories, where plugins are turned on under the Plugins section. On Windows and Linux, read
-Control for Command.
+Appearance. The one control at the top left opens and closes the rail, as does
+`Cmd+Shift+L`, and `Cmd+Shift+O` opens it on Outline.
+`Cmd+F` finds, `Cmd+Alt+F` finds and replaces, `Cmd+Shift+P` opens the command
+palette (`Cmd+K` inserts a link, as in Typora), and `Cmd+,` opens Settings and
+closes it again. Settings fills the window, with its panes grouped under
+General and Advanced: Plugins turns plugins on and installs new ones, and
+Shortcuts lists every key the app answers to, with a switch to free each one.
+On Windows and Linux, read Control for Command, except for three keys those
+systems already use: Inline Math is `Alt+Shift+M`, Toggle Task Status
+`Alt+Shift+X`, and Close Window `Ctrl+Shift+W`.
 
 The title bar carries the filename and nothing else that is not an action you
 can take right now: Save appears when there is something to save and is absent
@@ -40,8 +44,17 @@ already carrying the query.
 
 The open folder names itself on the tree's first row; an ellipsis on that
 row holds what acts on the folder: open another, reveal it in the file manager,
-refresh, and the folders you opened before. `Cmd+Shift+R` reveals the current
-note instead.
+refresh (also `Cmd+Alt+R`), and the folders you opened before. `Cmd+Shift+R`
+reveals the current note instead. The button beside the rail's search shuts
+every folder except the ones leading to the note in front. File → New Note
+makes the note beside the one in front and asks for its name on its row.
+
+While a note has unsaved changes, its name in the title bar opens them, side
+by side, stacked or inline, with the changed words marked. Close Tab, closing
+the window and quitting ask before unsaved changes would be lost. In a folder
+under git, the tree marks changed notes and a bar beside each block shows what
+changed since the last commit; View → Show Git Changes hides both for a clean
+screenshot.
 
 `Cmd+/` opens Source Code Mode: the whole note as the Markdown it is saved as,
 the way Typora's Command-slash does. `Cmd+Alt+/` still toggles source for the
@@ -49,8 +62,10 @@ single block under the caret, which is the escape hatch when you want to fix
 one paragraph, one table or one fence without leaving the rest rendered.
 
 Markdown input rules work as you type: `#` for a heading, `-` for a list,
-`` ``` `` for a code fence. The syntax markers for the block you are editing
-appear while you are in it and fold away when you leave, so the document stays
+`` ``` `` for a code fence. A block's markers, such as a heading's `#`,
+appear while the caret is in it and fold away when it leaves, and an inline
+mark's, such as `**` or a link's brackets, only while the caret is inside that
+span, so the line does not shift as you click into it. The document stays
 readable without hiding what it is made of.
 
 ## Byte-exact saving

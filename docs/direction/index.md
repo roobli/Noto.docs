@@ -9,7 +9,8 @@ description: What Noto is for, who it serves, and how the projects around it rel
 Drafted from a review of every public roobli repository and adopted by the
 owner on 2026-09-29; the [decision log](./decisions) records each decision and
 what is still open. Facts were first written as of Noto `v0.0.2-alpha.113`
-and updated on 2026-10-20 to Noto `v0.0.3` and `@roobli/md` `v0.1.20`.
+and updated on 2026-10-20 to Noto `v0.0.3` and `@roobli/md` `v0.1.20`. The
+release status below was updated on 2026-11-03 for Noto `v0.0.4`.
 :::
 
 This section is where the project writes down what it is trying to be, so that
@@ -101,7 +102,7 @@ or waits its turn.
 
 | Repository | Role | License | Maturity | Proposed stance |
 | --- | --- | --- | --- | --- |
-| [Noto](https://github.com/roobli/Noto) | The product | AGPL-3.0-only | `0.0.3`, the first release outside alpha, unsigned | All roadmap focus. |
+| [Noto](https://github.com/roobli/Noto) | The product | AGPL-3.0-only | `0.0.4`, the second release outside alpha, unsigned | All roadmap focus. |
 | [@roobli/md](https://github.com/roobli/md) | The platform: Noto's engine | MIT | `0.1.x`, consumed by git tag | A library with a contract: changelog, API reference, semver, npm once the contract settles. |
 | [Noto.docs](https://github.com/roobli/Noto.docs) | The front door, and the first web host of Noto's core | CC BY 4.0 for prose, MIT for code | Live; release facts generated at build time | The single source of truth for users, built with Noto's own engine ([web track](./roadmap#web)). |
 | [noto-plugin-template](https://github.com/roobli/noto-plugin-template) | Future ecosystem | MIT | Scaffold for a door not yet open | Keep, clearly labelled, until user-installed plugins ship. |

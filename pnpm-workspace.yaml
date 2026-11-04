@@ -1,6 +1,6 @@
 allowBuilds:
   esbuild: true
-  '@roobli/md@https://codeload.github.com/roobli/md/tar.gz/b408b1d24a814d7045209fad7e97741ad63a2805': true
+  '@roobli/md@https://codeload.github.com/roobli/md/tar.gz/39955fe91f767415edb8161496b48369a48373dc': true
 onlyBuiltDependencies:
   - esbuild
   - '@roobli/md'
