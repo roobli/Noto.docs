@@ -62,7 +62,8 @@ single block under the caret, which is the escape hatch when you want to fix
 one paragraph, one table or one fence without leaving the rest rendered.
 
 Markdown input rules work as you type: `#` for a heading, `-` for a list,
-`` ``` `` for a code fence. A block's markers, such as a heading's `#`,
+`` ``` `` for a code fence, and an HTML tag such as `<span class="sidenote">`
+becomes a tag as soon as its `>` is typed. A block's markers, such as a heading's `#`,
 appear while the caret is in it and fold away when it leaves, and an inline
 mark's, such as `**` or a link's brackets, only while the caret is inside that
 span, so the line does not shift as you click into it. The document stays
