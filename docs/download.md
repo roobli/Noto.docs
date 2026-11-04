@@ -16,8 +16,7 @@ edited it.
 Noto is not yet signed with an Apple Developer ID or a Windows code-signing
 certificate, so macOS and Windows warn once on a fresh download. Linux
 packages are not code-signed and install without that warning. That is
-expected, and it is true of 0.0.3, the first release outside alpha, which
-ships unsigned on purpose.
+expected: every release so far, 0.0.4 included, ships unsigned on purpose.
 The [install guide](./guide/install) has the one step each platform needs.
 
 On macOS, from the folder that contains `Noto.app`:
