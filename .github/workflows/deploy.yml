@@ -9,16 +9,24 @@ on:
     - cron: '23 */6 * * *'
   workflow_dispatch:
 
+# Pages takes the built site as an artifact, so the workflow pushes nothing
+# back to the repository and no gh-pages branch is kept.
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
 
+# A deploy that has started runs to the end; a newer one waits behind it.
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -43,10 +51,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: pnpm docs:build
 
-      - name: Deploy to gh-pages
-        uses: peaceiris/actions-gh-pages@v4
+      - name: Upload the site
+        uses: actions/upload-pages-artifact@v5
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: docs/.vitepress/dist
-          force_orphan: true
-          commit_message: 'Deploy VitePress site'
+          path: docs/.vitepress/dist
+
+      - name: Deploy to Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

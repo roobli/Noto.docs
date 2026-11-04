@@ -55,8 +55,9 @@ pnpm docs:preview
 
 ## Deploy
 
-GitHub Actions builds on every push to `main` and publishes the VitePress
-`dist` to the `gh-pages` branch (`peaceiris/actions-gh-pages`).
+GitHub Actions builds on every push to `main`, and every six hours to pick up
+new releases, then hands the VitePress `dist` to Pages as an artifact
+(`actions/upload-pages-artifact` and `actions/deploy-pages`). Nothing is
+pushed back to the repository, so there is no `gh-pages` branch.
 
-Pages settings: **Deploy from a branch** → `gh-pages` / `/` (not the old
-`main` `/docs` folder).
+Pages settings: **Source** → **GitHub Actions**.
