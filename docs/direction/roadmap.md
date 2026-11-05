@@ -148,7 +148,11 @@ first signed release instead. The unmarked items may follow in any release.
 6. **The writing loop**, in the order a writer meets it: paste, undo, input
    method composition, spell check, find, export. Each checked against
    [the Typora record](https://github.com/roobli/Noto/blob/main/docs/design/typora-gap.md),
-   and only where it serves writing and reading.
+   and only where it serves writing and reading. Paste, copy, the caret, undo
+   in Source Code Mode and a caret while an input method composes are done on
+   the way to the next release
+   ([roobli/Noto#414](https://github.com/roobli/Noto/pull/414)); spell check,
+   find and export are next.
 
 ## Later: open the doors carefully {#later}
 
@@ -158,12 +162,25 @@ first signed release instead. The unmarked items may follow in any release.
    built: a plugins folder, a package digest, an install surface and a
    versioned API. This is when the
    [plugin template](https://github.com/roobli/noto-plugin-template) becomes
-   a product.
+   a product. Its places in the window are being cut now, from the app's own
+   features: every area is a slot the app's features register through, the
+   rail page first, with Changes as its first user, then a pane beside the
+   note, status items and fenced blocks
+   ([the plugin guide](../guide/plugins#adding-to-the-window)).
 2. **`@roobli/md` on npm** with a v1 contract, so other hosts can share
    Noto's fidelity guarantee.
 3. **Noto on the web**, in the [track below](#web).
 4. **Canvas documents**, only if Noto decides to host them and only through
    the sandbox. Until then `@roobli/canvas` waits.
+5. **A folder of notes as memory**, shared by the person and their agents,
+   in [`@roobli/vault`](https://github.com/roobli/vault). The notes stay the
+   only source of truth: an index that can always be rebuilt, git history as
+   the record of writes and `.noto/events/` as the record of reads, scoped
+   access with notes no agent may see, recall within a budget, and changes an
+   agent proposes that a person accepts. Agents reach it through MCP or the
+   command line, which keeps the line drawn [below](#no): no chat pane in the
+   editor. Noto already records what is opened and shows what changed since
+   the last commit; a pane of related notes from the index comes next.
 
 ## Noto on the web {#web}
 

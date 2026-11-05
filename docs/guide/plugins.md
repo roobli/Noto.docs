@@ -146,6 +146,8 @@ interface EditorExtension {
   readonly id: string;                                   // listed in the manifest's editorExtensions
   readonly plugins: () => readonly Plugin[];             // made fresh for each editor
   readonly commands?: Readonly<Record<string, Command>>;
+  readonly contextMenu?: (view: EditorView, at: { pos: number | null; element: Element | null })
+    => readonly { title: string; command: string }[];
 }
 ```
 
@@ -159,16 +161,77 @@ waiting for the next note. `runEditorCommand(name)` runs one of the
 extension's commands, or one of the editor's own, on the note in front, and
 needs `editor.transform`.
 
+`contextMenu` adds lines to the editor's right-click menu. On each right
+click, main asks the window what the extensions offer at the point clicked and
+waits a quarter of a second for the answer; each line names one of the
+extension's `commands`, which runs on the note in front when it is chosen.
+`at.pos` is the document position under the pointer and `at.element` the
+element hit, which is what identifies a widget or anything floated out of the
+text. Offer a line only when the click is about something the plugin owns:
+the menu is drawn fresh on every click, and most clicks are about nothing a
+plugin knows.
+
 This is a trusted surface. A sandboxed plugin's worker has no page to hand a
 ProseMirror plugin from, and its manifest must leave `editorExtensions`
 empty. The bundled Sidenotes plugin
 (`src/renderer/plugins/bundled/sidenotes/`) is the worked example: its
-extension draws `<span class="sidenote">` as margin notes and owns the
-"wrap the selection" command behind `Cmd+Alt+S`.
+extension draws `<span class="sidenote">` as margin notes, opens the card a
+new note is written in from `Cmd+Alt+S` or the right-click menu, and offers
+Remove Sidenote when the click is on a note.
 
 Commands appear in the command palette (`Shift+Cmd+P`) while the plugin is active,
 under the title the manifest gives them. Hotkeys are dispatched by the shell
 and reach the plugin through the registry, so they work wherever focus is.
+
+### Adding to the window
+
+Everything above lives inside an editor and goes when the note does. A plugin
+that knows about the folder rather than one note, a page in the rail say,
+needs a place in the window that is there with no note open. The rule for
+those places is that the app is the first plugin: each area of the window is a
+slot, each service the app's own features use is a capability the manifest
+names, and a bundled feature registers through the same slot anyone else's
+would.
+
+A trusted plugin may have a second entry point beside `activate`, called
+while the plugin is switched on, whether or not a note is open, and undone
+when it is switched off:
+
+```ts
+shell?(context: ShellContext): () => void
+
+interface ShellContext {
+  readonly pluginId: string;
+  readonly host: RailPageHost;
+  readonly git: GitService | null;          // only with `git.read` in capabilities
+  registerRailPage(page: {
+    id: string;                             // `rail:<id>` must be in uiExtensions
+    title: string;                          // the toggle's tooltip and accessible name
+    icon: string;                           // the `d` of a path in a 16 by 16 box
+    mount(element: HTMLElement, host: RailPageHost): () => void;
+  }): { setBadge(text: string | null): void; dispose(): void };
+}
+```
+
+A rail page is a toggle in the rail's head, beside search, with an optional
+count from `setBadge`; pressing it hands the rail to the page's element, and
+pressing it again gives the rail back to the files. The slot hands over a DOM
+element and a host, never React or the shell's state, so a page renders with
+whatever it likes. The host says where the window is (`folder()`,
+`activeNote()`, and `subscribe` for when either changes), brings a note to the
+front (`openNote`), and shows the file tree's own menu for a note or folder
+(`showFileMenu(path, kind)`): main checks the path against the open folder and
+runs every item, so a page offers rename, move, reveal and copy path without
+holding any of them. A rename or a new folder chosen there is typed on the
+row in the file tree, and the rail comes back to the page after. `git.read`
+gives what changed in the folder since the last commit.
+
+The bundled Changes plugin (`src/renderer/plugins/bundled/changes/`) is the
+worked example: a page that lists only the changed notes as a short tree,
+built from the slot alone. `src/renderer/plugins/ui-kit.ts` holds the pieces
+of the shell's tree a page may draw with, and the slots still to come (a pane
+beside the note, status items, fenced blocks) are in
+[the slots design](https://github.com/roobli/Noto/blob/main/docs/architecture/plugin-slots.md).
 
 ## Lifecycle, as the reader sees it
 
@@ -327,13 +390,16 @@ build:
   and an enabled plugin is waiting, the shell raises `editor.ready` and the
   plugin activates, so a plugin enabled yesterday is running when a note
   opens today. `activation.startup` is validated and stored but nothing
-  fires it, and no other event is raised.
+  fires it, and no other event is raised. A trusted plugin's `shell` entry
+  point is the exception: it runs whenever the plugin is switched on.
 - **Settings are booleans.** See above.
 - **`notice` is a status line message.** It shows in the status bar for a
   couple of seconds, attributed to the plugin in the lifecycle counters, and
   that is all it can do: no actions, no persistence.
-- **UI extensions are declared and unconsumed.** Nothing reads
-  `uiExtensions` yet.
+- **The window has one slot so far.** `uiExtensions` is read for rail pages
+  (`rail:<id>`) and nothing else, and only trusted plugins can fill it; a
+  sandboxed plugin's page, drawn in a frame the slot owns, comes after the
+  pane, status and fenced-block slots.
 
 Each of these is a known gap rather than a design choice, and the order above
 is the order they are likely to close.
