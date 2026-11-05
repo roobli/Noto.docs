@@ -54,12 +54,30 @@ by side, stacked or inline, with the changed words marked. Close Tab, closing
 the window and quitting ask before unsaved changes would be lost. In a folder
 under git, the tree marks changed notes and a bar beside each block shows what
 changed since the last commit; View → Show Git Changes hides both for a clean
-screenshot.
+screenshot. The icon beside the rail's search, with a count, turns the rail to
+Changes: only the notes that differ from the last commit, as one short tree,
+changed, new and deleted each with its own mark, and a chain of folders holding
+only the next drawn as one row. A click opens a note, and a right click gives
+it the same menu as in the file tree; a rename is typed on its row in the tree,
+and the rail comes back to Changes after. Changes is a bundled plugin and can
+be switched off in Settings → Plugins.
+
+In a folder that keeps memory, one with a `.noto/` folder in it, Noto writes
+down each note you bring to the front, and the note you followed a link from,
+one line per open in `.noto/events/<computer>/<year-month>.jsonl`. Nothing else
+is written, and Noto sends nothing anywhere; the lines stay in your folder
+(whether they go into git is up to you) for
+[the vault tools](https://github.com/roobli/vault) to tell which notes are warm
+and which you think of together. A folder without `.noto/` is never written
+to. To forget, delete `.noto/events/`; the vault tools let go of it at their
+next full rebuild.
 
 `Cmd+/` opens Source Code Mode: the whole note as the Markdown it is saved as,
 the way Typora's Command-slash does. `Cmd+Alt+/` still toggles source for the
 single block under the caret, which is the escape hatch when you want to fix
 one paragraph, one table or one fence without leaving the rest rendered.
+Undo there steps through the text a typed run at a time, and leaving the mode
+always shows what the text says.
 
 Markdown input rules work as you type: `#` for a heading, `-` for a list,
 `` ``` `` for a code fence, and an HTML tag such as `<span class="sidenote">`
@@ -68,6 +86,24 @@ appear while the caret is in it and fold away when it leaves, and an inline
 mark's, such as `**` or a link's brackets, only while the caret is inside that
 span, so the line does not shift as you click into it. The document stays
 readable without hiding what it is made of.
+
+The caret is drawn by Noto, two pixels in the accent, solid while you type and
+breathing once it rests, so it is easy to find in a page of text; Reduce
+Motion keeps it still. A click anywhere in the page around the text puts it in
+the note at the nearest place. Copying inside one block copies what you
+selected and nothing around it: ten words from a table cell come out as ten
+words, part of a code block as its code. Rich text pasted from ChatGPT,
+GitHub, a documentation site or Google Docs is tidied into what a note holds
+(code keeps its language, a formula comes in as its TeX), and when the tidy
+took anything out the status line says what, with Paste as text to put the
+plain text in instead. A code block that names no language is coloured as the
+one it reads as, marked `auto` in its corner until you choose; the corner
+opens a searchable list of languages, and `Cmd+A` inside a block selects its
+code first. A table's tools stand in the right margin while the caret is in
+it. To write a sidenote, select the words and choose Add Sidenote from the
+right-click menu or press `Cmd+Alt+S`: a card opens in the margin beside the
+line, Enter keeps the note and Escape leaves nothing behind, and the file
+stays readable in Typora.
 
 ## Byte-exact saving
 
